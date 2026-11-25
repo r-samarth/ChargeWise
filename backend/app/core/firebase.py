@@ -9,7 +9,9 @@ import firebase_admin
 from firebase_admin import auth as fb_auth
 from firebase_admin import credentials, firestore
 from google.auth.credentials import AnonymousCredentials
+from google.auth.transport import requests as google_requests
 from google.cloud import firestore as gcp_firestore
+from google.oauth2 import id_token as google_id_token
 
 from app.core.config import Settings, get_settings
 
@@ -17,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 _cached_firestore_client: Any = None
 _firestore_checked: bool = False
+_google_transport_request = google_requests.Request()
 
 
 class FirebaseAuthError(Exception):
@@ -42,8 +45,12 @@ class DecodedFirebaseToken:
 def _configure_emulator_env(settings: Settings) -> None:
     if settings.firebase_auth_emulator_host:
         os.environ["FIREBASE_AUTH_EMULATOR_HOST"] = settings.firebase_auth_emulator_host
+    else:
+        os.environ.pop("FIREBASE_AUTH_EMULATOR_HOST", None)
     if settings.firestore_emulator_host:
         os.environ["FIRESTORE_EMULATOR_HOST"] = settings.firestore_emulator_host
+    else:
+        os.environ.pop("FIRESTORE_EMULATOR_HOST", None)
 
 
 def _has_explicit_credentials(cfg: Settings) -> bool:
@@ -100,7 +107,6 @@ def get_firestore_client(settings: Settings | None = None):
     cfg = settings or get_settings()
     _configure_emulator_env(cfg)
 
-    # In emulator mode without explicit credentials, verify emulator socket first so offline tests fail fast
     emulator_host = os.getenv("FIRESTORE_EMULATOR_HOST") or cfg.firestore_emulator_host
     if emulator_host and not _has_explicit_credentials(cfg):
         if not _emulator_reachable(emulator_host):
@@ -112,7 +118,10 @@ def get_firestore_client(settings: Settings | None = None):
             )
         return _cached_firestore_client
 
-    if _firestore_checked and _cached_firestore_client is not None:
+    if not _has_explicit_credentials(cfg):
+        return None
+
+    if _firestore_checked:
         return _cached_firestore_client
 
     try:
@@ -131,43 +140,76 @@ def verify_firebase_id_token(
 ) -> DecodedFirebaseToken:
     """Verify a Firebase ID token and extract verified UID, email, and claims."""
     cfg = settings or get_settings()
-    app = get_firebase_app(cfg)
+    _configure_emulator_env(cfg)
 
-    try:
-        decoded = fb_auth.verify_id_token(
-            id_token, app=app, check_revoked=cfg.firebase_check_revoked
-        )
-    except fb_auth.ExpiredIdTokenError as exc:
-        raise FirebaseAuthError(
-            "Authentication token has expired. Please sign in again.",
-            status_code=401,
-            code="token_expired",
-        ) from exc
-    except fb_auth.RevokedIdTokenError as exc:
-        raise FirebaseAuthError(
-            "Authentication session has been revoked. Please sign in again.",
-            status_code=401,
-            code="token_revoked",
-        ) from exc
-    except fb_auth.UserDisabledError as exc:
-        raise FirebaseAuthError(
-            "This account has been disabled.",
-            status_code=403,
-            code="account_disabled",
-        ) from exc
-    except fb_auth.InvalidIdTokenError as exc:
-        raise FirebaseAuthError(
-            "Invalid authentication token.",
-            status_code=401,
-            code="invalid_token",
-        ) from exc
-    except Exception as exc:
-        logger.error("Unexpected Firebase token verification error: %s", type(exc).__name__)
-        raise FirebaseAuthError(
-            "Authentication service is unavailable or token could not be verified.",
-            status_code=401,
-            code="auth_verification_failed",
-        ) from exc
+    emulator_auth = os.getenv("FIREBASE_AUTH_EMULATOR_HOST") or cfg.firebase_auth_emulator_host
+    use_admin_sdk = bool(emulator_auth) or _has_explicit_credentials(cfg)
+
+    if use_admin_sdk:
+        app = get_firebase_app(cfg)
+        try:
+            decoded = fb_auth.verify_id_token(
+                id_token, app=app, check_revoked=cfg.firebase_check_revoked
+            )
+        except fb_auth.ExpiredIdTokenError as exc:
+            raise FirebaseAuthError(
+                "Authentication token has expired. Please sign in again.",
+                status_code=401,
+                code="token_expired",
+            ) from exc
+        except fb_auth.RevokedIdTokenError as exc:
+            raise FirebaseAuthError(
+                "Authentication session has been revoked. Please sign in again.",
+                status_code=401,
+                code="token_revoked",
+            ) from exc
+        except fb_auth.UserDisabledError as exc:
+            raise FirebaseAuthError(
+                "This account has been disabled.",
+                status_code=403,
+                code="account_disabled",
+            ) from exc
+        except fb_auth.InvalidIdTokenError as exc:
+            raise FirebaseAuthError(
+                "Invalid authentication token.",
+                status_code=401,
+                code="invalid_token",
+            ) from exc
+        except Exception as exc:
+            logger.error("Unexpected Firebase token verification error: %s", type(exc).__name__)
+            raise FirebaseAuthError(
+                "Authentication service is unavailable or token could not be verified.",
+                status_code=401,
+                code="auth_verification_failed",
+            ) from exc
+    else:
+        # Cryptographic RS256 verification against Google's public Firebase x509 certs
+        try:
+            decoded = google_id_token.verify_firebase_token(
+                id_token,
+                _google_transport_request,
+                audience=cfg.firebase_project_id,
+            )
+        except ValueError as exc:
+            msg = str(exc).lower()
+            if "expired" in msg:
+                raise FirebaseAuthError(
+                    "Authentication token has expired. Please sign in again.",
+                    status_code=401,
+                    code="token_expired",
+                ) from exc
+            raise FirebaseAuthError(
+                "Invalid authentication token.",
+                status_code=401,
+                code="invalid_token",
+            ) from exc
+        except Exception as exc:
+            logger.error("Firebase public JWKS verification error: %s", type(exc).__name__)
+            raise FirebaseAuthError(
+                "Authentication service is unavailable or token could not be verified.",
+                status_code=401,
+                code="auth_verification_failed",
+            ) from exc
 
     uid = decoded.get("uid") or decoded.get("sub")
     if not uid:

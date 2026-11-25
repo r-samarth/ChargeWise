@@ -108,3 +108,26 @@ def test_admin_rbac_enforced_on_backend(client, cleanup_test_users):
         r = client.get("/api/v1/admin/data-quality", headers={"Authorization": "Bearer a"})
         assert r.status_code == 200
         assert r.json()["total_stations"] >= 15
+
+
+def test_public_jwks_verification_without_service_account():
+    from app.core.config import Settings
+    from app.core.firebase import verify_firebase_id_token
+
+    cfg = Settings(
+        firebase_project_id="chargewise-7e46f",
+        firebase_auth_emulator_host=None,
+        firestore_emulator_host=None,
+        firebase_service_account_json=None,
+    )
+    fake_claims = {
+        "sub": "live-firebase-uid-123",
+        "email": "driver@chargewise.in",
+        "email_verified": True,
+        "name": "Live Driver",
+    }
+    with patch("app.core.firebase.google_id_token.verify_firebase_token", return_value=fake_claims):
+        decoded = verify_firebase_id_token("mock.jwt.token", settings=cfg)
+        assert decoded.uid == "live-firebase-uid-123"
+        assert decoded.email == "driver@chargewise.in"
+        assert decoded.role == "user"
