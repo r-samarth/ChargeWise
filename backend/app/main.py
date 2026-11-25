@@ -38,6 +38,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origin_list,
+    # Also allow unique Vercel deployment URLs for this project. These URLs
+    # change on each deployment and are distinct from the stable production alias.
+    allow_origin_regex=r"^https://frontend-691q-[a-z0-9]+-samarth-r18s-projects\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
