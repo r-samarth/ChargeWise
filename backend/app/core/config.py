@@ -6,6 +6,13 @@ from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+PRODUCTION_CORS_ORIGINS = (
+    "https://frontend-691q.vercel.app,"
+    "https://frontend-691q-samarth-r18s-projects.vercel.app,"
+    "https://frontend-691q-git-main-samarth-r18s-projects.vercel.app"
+)
+
+
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
@@ -18,7 +25,10 @@ class Settings(BaseSettings):
     app_name: str = "ChargeWise API"
     app_env: str = "development"
     port: int = 8001
-    cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
+    cors_origins: str = (
+        "http://localhost:5173,http://127.0.0.1:5173,"
+        + PRODUCTION_CORS_ORIGINS
+    )
 
     database_url: str = (
         "postgresql+psycopg://chargewise:chargewise_dev_pass@localhost:5432/chargewise"
@@ -43,10 +53,9 @@ class Settings(BaseSettings):
             s = v.strip().strip('"').strip("'").strip()
             if s.startswith("DATABASE_URL="):
                 s = s[len("DATABASE_URL="):].strip().strip('"').strip("'")
-            # Handle Neon/Render CLI snippets like: psql 'postgresql://...'
-            m = re.search(r"(postgres(?:ql)?(?:\+psycopg)?://[^\s'\"]+)", s)
-            if m:
-                s = m.group(1)
+            match = re.search(r"(postgres(?:ql)?(?:\+psycopg)?://[^\s'\"]+)", s)
+            if match:
+                s = match.group(1)
             if s.startswith("postgres://"):
                 return "postgresql+psycopg://" + s[len("postgres://"):]
             if s.startswith("postgresql://"):
