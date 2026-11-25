@@ -117,6 +117,8 @@ def seed_all() -> dict[str, int]:
 
         # 4. Real OSM Karnataka stations (with deduplication)
         osm_raw = REPO_ROOT / "data" / "raw" / "osm_karnataka_chargers.json"
+        if not osm_raw.exists():
+            osm_raw = BACKEND_DIR / "app" / "integrations" / "osm_karnataka_chargers.json"
         for row in load_karnataka_osm_stations(osm_raw):
             if repo.get_source_record(row["source"], row["source_id"]) is not None:
                 continue
