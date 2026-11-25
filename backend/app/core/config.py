@@ -7,6 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 PRODUCTION_CORS_ORIGINS = (
+    "https://chargewise.samarth-r.dev,"
     "https://frontend-691q.vercel.app,"
     "https://frontend-691q-samarth-r18s-projects.vercel.app,"
     "https://frontend-691q-git-main-samarth-r18s-projects.vercel.app"
