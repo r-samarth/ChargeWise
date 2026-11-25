@@ -40,29 +40,36 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8F9FC] text-[#121317]">
+    <div className="min-h-screen flex flex-col text-[#0F172A]">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-[10px] focus:left-[10px] focus:z-50 cw-btn-primary"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-[12px] focus:left-[12px] focus:z-50 cw-btn-primary"
       >
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-40 bg-[#FFFFFF] border-b border-[#E6EAF0]">
-        <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] h-[60px] flex items-center justify-between gap-[16px]">
-          <div className="flex items-center gap-[24px]">
+      <header className="sticky top-0 z-40 cw-glass-nav">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 h-[68px] flex items-center justify-between gap-4">
+          <div className="flex items-center gap-6">
             <Link
               to="/"
-              className="flex items-center gap-[8px] font-semibold text-[18px] text-[#121317] tracking-tight"
+              className="flex items-center gap-2.5 font-bold text-[18px] text-[#0F172A] tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="w-[28px] h-[28px] rounded-[999px] bg-[#121317] text-[#FFFFFF] inline-flex items-center justify-center">
-                <Zap size={15} aria-hidden="true" />
+              <span
+                className="w-[32px] h-[32px] rounded-full text-white inline-flex items-center justify-center shadow-sm"
+                style={{
+                  background: "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)",
+                  boxShadow: "0 4px 12px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255,255,255,0.3)",
+                }}
+              >
+                <Zap size={16} aria-hidden="true" />
               </span>
               <span>ChargeWise</span>
-              <span className="hidden sm:inline-flex cw-pill">Karnataka</span>
+              <span className="hidden sm:inline-flex cw-pill cw-pill-accent">Karnataka</span>
             </Link>
 
-            <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-[4px]">
+            <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-1.5">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -70,10 +77,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     key={item.to}
                     to={item.to}
                     className={({ isActive }) =>
-                      `inline-flex items-center gap-[6px] px-[14px] py-[8px] rounded-[999px] text-[13px] font-medium transition-colors ${
+                      `inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13.5px] font-medium transition-all ${
                         isActive
-                          ? "bg-[#121317] text-[#FFFFFF]"
-                          : "text-[#45474D] hover:bg-[#F8F9FC] hover:text-[#121317]"
+                          ? "bg-[#2563EB] text-white shadow-[0_6px_16px_-4px_rgba(37,99,235,0.45)]"
+                          : "text-[#475569] hover:bg-[#DBEAFE]/65 hover:text-[#1D4ED8]"
                       }`
                     }
                   >
@@ -85,12 +92,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </nav>
           </div>
 
-          <div className="hidden lg:flex items-center gap-[10px]">
+          <div className="hidden lg:flex items-center gap-2.5">
             {firebaseUser ? (
               <>
                 <Link
                   to="/profile"
-                  className="cw-btn-secondary py-[6px] px-[14px]"
+                  className="cw-btn-secondary !py-[7px] !px-[14px]"
                 >
                   <UserIcon size={14} aria-hidden="true" />
                   <span>{profile?.display_name || firebaseUser.email?.split("@")[0] || "Account"}</span>
@@ -98,7 +105,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="cw-btn-secondary py-[6px] px-[14px]"
+                  className="cw-btn-secondary !py-[7px] !px-[14px]"
                   aria-label="Sign out"
                 >
                   <LogOut size={14} aria-hidden="true" />
@@ -119,7 +126,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
           <button
             type="button"
-            className="lg:hidden cw-btn-secondary p-[8px]"
+            className="lg:hidden cw-btn-secondary !p-2"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -131,19 +138,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {mobileOpen && (
           <nav
             aria-label="Mobile navigation"
-            className="lg:hidden border-t border-[#E6EAF0] bg-[#FFFFFF] px-[16px] py-[16px] flex flex-col gap-[8px]"
+            className="lg:hidden border-t border-white/75 bg-white/85 backdrop-blur-xl px-4 py-4 flex flex-col gap-2"
           >
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 onClick={() => setMobileOpen(false)}
-                className="px-[14px] py-[10px] rounded-[16px] text-[15px] text-[#121317] hover:bg-[#F8F9FC]"
+                className="px-3.5 py-2.5 rounded-2xl text-[15px] font-medium text-[#0F172A] hover:bg-[#DBEAFE]/60"
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-[8px] border-t border-[#E6EAF0] flex flex-wrap gap-[8px]">
+            <div className="pt-2 border-t border-slate-200/70 flex flex-wrap gap-2">
               {firebaseUser ? (
                 <>
                   <Link
@@ -191,24 +198,24 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="border-t border-[#E6EAF0] bg-[#FFFFFF] mt-[48px]">
-        <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[24px] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-[16px] text-[13px] text-[#6A6A71]">
-          <div>
-            <p className="m-0 font-medium text-[#121317]">
+      <footer className="mt-16 border-t border-white/80 bg-white/60 backdrop-blur-xl">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[13px] text-[#475569]">
+          <div className="space-y-1">
+            <p className="font-semibold text-[#0F172A]">
               ChargeWise — Karnataka EV Charging Intelligence
             </p>
-            <p className="m-0 mt-[4px]">
+            <p className="text-[#64748B]">
               Verified station provenance & deterministic trip planning. Live charger occupancy is never fabricated.
             </p>
           </div>
-          <div className="flex flex-wrap gap-[16px]">
-            <Link to="/stations" className="hover:text-[#121317]">
+          <div className="flex flex-wrap gap-5 font-medium text-[#334155]">
+            <Link to="/stations" className="hover:text-[#2563EB] transition-colors">
               Station Explorer
             </Link>
-            <Link to="/plan" className="hover:text-[#121317]">
+            <Link to="/plan" className="hover:text-[#2563EB] transition-colors">
               Trip Planner
             </Link>
-            <Link to="/trip-history" className="hover:text-[#121317]">
+            <Link to="/trip-history" className="hover:text-[#2563EB] transition-colors">
               Trip History
             </Link>
           </div>

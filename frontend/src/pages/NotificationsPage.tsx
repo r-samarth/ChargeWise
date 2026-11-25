@@ -49,17 +49,18 @@ export function NotificationsPage() {
   const activities = activityData?.items || [];
 
   return (
-    <div className="max-w-[1120px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-[16px]">
-        <div>
-          <h1 className="text-[28px] font-semibold text-[#121317] m-0">
+    <div className="max-w-[1120px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <span className="cw-eyebrow">Updates</span>
+          <h1 className="text-[28px] sm:text-[34px] font-bold text-[#0F172A] leading-tight">
             Notification Centre & Activity
           </h1>
-          <p className="text-[15px] text-[#45474D] mt-[4px] mb-0">
+          <p className="text-[15px] text-[#475569]">
             Powered by Cloud Firestore with idempotent backend event synchronization.
           </p>
         </div>
-        <div className="flex flex-wrap gap-[8px]">
+        <div className="flex flex-wrap gap-2 shrink-0">
           <button
             type="button"
             onClick={() => setUnreadOnly((v) => !v)}
@@ -90,36 +91,36 @@ export function NotificationsPage() {
         <StatusAlert title="Error loading inbox" message={(error as Error).message} variant="error" />
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-[20px]">
-        <section className="lg:col-span-7 cw-card p-[24px] space-y-[14px]">
-          <h2 className="text-[18px] font-semibold text-[#121317] m-0 flex items-center gap-[8px]">
-            <Bell size={18} aria-hidden="true" />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <section className="lg:col-span-7 cw-card p-6 space-y-4">
+          <h2 className="text-[18px] font-bold text-[#0F172A] flex items-center gap-2">
+            <Bell size={18} className="text-[#2563EB]" aria-hidden="true" />
             <span>Notifications</span>
           </h2>
 
           {isLoading ? (
-            <p className="text-[15px] text-[#45474D] m-0">Loading notifications...</p>
+            <p className="text-[15px] text-[#475569]">Loading notifications...</p>
           ) : notifications.length === 0 ? (
-            <p className="text-[15px] text-[#45474D] m-0">
+            <p className="text-[15px] text-[#475569]">
               No notifications found. Saving a trip creates a notification here.
             </p>
           ) : (
-            <ul className="list-none p-0 m-0 space-y-[10px]">
+            <ul className="list-none p-0 m-0 space-y-2.5">
               {notifications.map((n) => (
                 <li
                   key={n.id}
-                  className="cw-card-muted p-[14px] flex flex-col sm:flex-row sm:items-center justify-between gap-[10px]"
+                  className="cw-card-muted p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                 >
-                  <div>
-                    <div className="flex items-center gap-[8px]">
-                      <strong className="text-[15px] text-[#121317]">{n.title}</strong>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <strong className="text-[15px] font-semibold text-[#0F172A]">{n.title}</strong>
                       {!n.read && <span className="cw-pill cw-pill-accent">Unread</span>}
                     </div>
-                    <p className="text-[13px] text-[#45474D] mt-[4px] mb-0">{n.message}</p>
-                    <div className="flex items-center gap-[10px] mt-[6px] text-[11px] text-[#6A6A71]">
+                    <p className="text-[13.5px] text-[#475569]">{n.message}</p>
+                    <div className="flex items-center gap-3 pt-0.5 text-[11.5px] text-[#64748B] cw-num">
                       <span>{n.createdAt ? new Date(n.createdAt).toLocaleString() : "Just now"}</span>
                       {n.deepLink && (
-                        <Link to={n.deepLink} className="underline text-[#121317]">
+                        <Link to={n.deepLink} className="font-semibold text-[#1D4ED8] hover:underline">
                           View journey
                         </Link>
                       )}
@@ -128,7 +129,7 @@ export function NotificationsPage() {
                   <button
                     type="button"
                     onClick={() => markReadMut.mutate({ id: n.id, read: !n.read })}
-                    className="cw-btn-secondary py-[5px] px-[12px] shrink-0"
+                    className="cw-btn-secondary !py-1.5 !px-3.5 shrink-0"
                   >
                     {n.read ? "Mark unread" : "Mark read"}
                   </button>
@@ -138,17 +139,17 @@ export function NotificationsPage() {
           )}
         </section>
 
-        <section className="lg:col-span-5 cw-card p-[24px] space-y-[14px]">
-          <h2 className="text-[18px] font-semibold text-[#121317] m-0">Activity Feed</h2>
+        <section className="lg:col-span-5 cw-card p-6 space-y-4">
+          <h2 className="text-[18px] font-bold text-[#0F172A]">Activity Feed</h2>
           {activities.length === 0 ? (
-            <p className="text-[15px] text-[#45474D] m-0">No activity recorded yet.</p>
+            <p className="text-[15px] text-[#475569]">No activity recorded yet.</p>
           ) : (
-            <ul className="list-none p-0 m-0 space-y-[10px]">
+            <ul className="list-none p-0 m-0 space-y-2.5">
               {activities.map((a) => (
-                <li key={a.id} className="cw-card-muted p-[12px]">
-                  <p className="text-[14px] font-medium text-[#121317] m-0">{a.title}</p>
-                  <p className="text-[13px] text-[#45474D] mt-[2px] mb-0">{a.description}</p>
-                  <p className="text-[11px] text-[#6A6A71] mt-[4px] mb-0">
+                <li key={a.id} className="cw-card-muted p-3.5 space-y-0.5">
+                  <p className="text-[14px] font-semibold text-[#0F172A]">{a.title}</p>
+                  <p className="text-[13px] text-[#475569]">{a.description}</p>
+                  <p className="text-[11.5px] text-[#64748B] cw-num pt-0.5">
                     {a.createdAt ? new Date(a.createdAt).toLocaleString() : "Recent"}
                   </p>
                 </li>

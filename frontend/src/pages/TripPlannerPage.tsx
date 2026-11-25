@@ -129,13 +129,13 @@ export function TripPlannerPage() {
   };
 
   return (
-    <div className="max-w-[980px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div>
+    <div className="max-w-[980px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="space-y-1.5">
         <span className="cw-pill cw-pill-accent">Deterministic Karnataka Optimizer</span>
-        <h1 className="text-[28px] sm:text-[36px] font-semibold text-[#121317] mt-[10px] mb-0">
+        <h1 className="text-[28px] sm:text-[34px] font-bold text-[#0F172A] leading-tight">
           Smart EV Trip Planner
         </h1>
-        <p className="text-[15px] text-[#45474D] mt-[4px] mb-0">
+        <p className="text-[15px] text-[#475569]">
           Plans connector-compatible routes with Western Ghats elevation adjustments and family-friendly charging stops.
         </p>
       </div>
@@ -154,10 +154,10 @@ export function TripPlannerPage() {
 
       {errorMsg && <StatusAlert title="Cannot plan trip" message={errorMsg} variant="error" />}
 
-      <form onSubmit={handleSubmit} className="cw-card p-[24px] sm:p-[36px] space-y-[24px]">
+      <form onSubmit={handleSubmit} className="cw-card p-6 sm:p-8 space-y-6">
         {/* Vehicle */}
         <div>
-          <label htmlFor="vehicleId" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+          <label htmlFor="vehicleId" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
             Select vehicle
           </label>
           <select
@@ -177,9 +177,9 @@ export function TripPlannerPage() {
         </div>
 
         {/* Route Endpoints */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="originPlace" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="originPlace" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Origin (Karnataka)
             </label>
             <select
@@ -197,7 +197,7 @@ export function TripPlannerPage() {
           </div>
 
           <div>
-            <label htmlFor="destPlace" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="destPlace" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Destination (Karnataka)
             </label>
             <select
@@ -219,62 +219,62 @@ export function TripPlannerPage() {
           <button
             type="button"
             onClick={() => setCustomCoords((v) => !v)}
-            className="cw-btn-secondary py-[6px] px-[12px]"
+            className="cw-btn-secondary !py-1.5 !px-3.5"
           >
             <Sliders size={14} aria-hidden="true" />
             <span>{customCoords ? "Hide exact coordinates" : "Customize exact coordinates"}</span>
           </button>
 
           {customCoords && (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-[12px] mt-[12px] cw-card-muted p-[14px]">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3 cw-card-muted p-4">
               <div>
-                <label htmlFor="originLat" className="block text-[11px] text-[#6A6A71] mb-[4px]">
+                <label htmlFor="originLat" className="block text-[11.5px] font-medium text-[#64748B] mb-1">
                   Origin Lat
                 </label>
                 <input
                   id="originLat"
                   type="number"
                   step="0.0001"
-                  className="cw-input"
+                  className="cw-input cw-num"
                   value={originLat}
                   onChange={(e) => setOriginLat(Number(e.target.value))}
                 />
               </div>
               <div>
-                <label htmlFor="originLon" className="block text-[11px] text-[#6A6A71] mb-[4px]">
+                <label htmlFor="originLon" className="block text-[11.5px] font-medium text-[#64748B] mb-1">
                   Origin Lon
                 </label>
                 <input
                   id="originLon"
                   type="number"
                   step="0.0001"
-                  className="cw-input"
+                  className="cw-input cw-num"
                   value={originLon}
                   onChange={(e) => setOriginLon(Number(e.target.value))}
                 />
               </div>
               <div>
-                <label htmlFor="destLat" className="block text-[11px] text-[#6A6A71] mb-[4px]">
+                <label htmlFor="destLat" className="block text-[11.5px] font-medium text-[#64748B] mb-1">
                   Dest Lat
                 </label>
                 <input
                   id="destLat"
                   type="number"
                   step="0.0001"
-                  className="cw-input"
+                  className="cw-input cw-num"
                   value={destLat}
                   onChange={(e) => setDestLat(Number(e.target.value))}
                 />
               </div>
               <div>
-                <label htmlFor="destLon" className="block text-[11px] text-[#6A6A71] mb-[4px]">
+                <label htmlFor="destLon" className="block text-[11.5px] font-medium text-[#64748B] mb-1">
                   Dest Lon
                 </label>
                 <input
                   id="destLon"
                   type="number"
                   step="0.0001"
-                  className="cw-input"
+                  className="cw-input cw-num"
                   value={destLon}
                   onChange={(e) => setDestLon(Number(e.target.value))}
                 />
@@ -284,10 +284,10 @@ export function TripPlannerPage() {
         </div>
 
         {/* Battery SOC */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-[16px]">
+        <div className="cw-card-muted p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-3 gap-5">
           <div>
-            <label htmlFor="startSoc" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
-              Current battery SOC: <strong>{startSoc}%</strong>
+            <label htmlFor="startSoc" className="block text-[13px] font-medium text-[#334155] mb-2">
+              Current battery SOC: <strong className="text-[#1D4ED8] cw-num">{startSoc}%</strong>
             </label>
             <input
               id="startSoc"
@@ -296,12 +296,12 @@ export function TripPlannerPage() {
               max={100}
               value={startSoc}
               onChange={(e) => setStartSoc(Number(e.target.value))}
-              className="w-full accent-[#121317]"
+              className="w-full accent-[#2563EB]"
             />
           </div>
           <div>
-            <label htmlFor="targetSoc" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
-              Desired arrival SOC: <strong>{targetSoc}%</strong>
+            <label htmlFor="targetSoc" className="block text-[13px] font-medium text-[#334155] mb-2">
+              Desired arrival SOC: <strong className="text-[#1D4ED8] cw-num">{targetSoc}%</strong>
             </label>
             <input
               id="targetSoc"
@@ -310,12 +310,12 @@ export function TripPlannerPage() {
               max={80}
               value={targetSoc}
               onChange={(e) => setTargetSoc(Number(e.target.value))}
-              className="w-full accent-[#121317]"
+              className="w-full accent-[#2563EB]"
             />
           </div>
           <div>
-            <label htmlFor="reserveSoc" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
-              Safety reserve buffer: <strong>{reserveSoc}%</strong>
+            <label htmlFor="reserveSoc" className="block text-[13px] font-medium text-[#334155] mb-2">
+              Safety reserve buffer: <strong className="text-[#0F766E] cw-num">{reserveSoc}%</strong>
             </label>
             <input
               id="reserveSoc"
@@ -324,15 +324,15 @@ export function TripPlannerPage() {
               max={30}
               value={reserveSoc}
               onChange={(e) => setReserveSoc(Number(e.target.value))}
-              className="w-full accent-[#121317]"
+              className="w-full accent-[#0D9488]"
             />
           </div>
         </div>
 
         {/* Routing Preferences */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="maxDetour" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="maxDetour" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Maximum corridor detour (km)
             </label>
             <input
@@ -340,13 +340,13 @@ export function TripPlannerPage() {
               type="number"
               min={1}
               max={50}
-              className="cw-input"
+              className="cw-input cw-num"
               value={maxDetourKm}
               onChange={(e) => setMaxDetourKm(Number(e.target.value))}
             />
           </div>
           <div>
-            <label htmlFor="maxStops" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="maxStops" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Maximum charging stops
             </label>
             <select
@@ -365,10 +365,10 @@ export function TripPlannerPage() {
         </div>
 
         <div>
-          <span className="block text-[13px] font-medium text-[#121317] mb-[8px]">
+          <span className="block text-[13px] font-semibold text-[#1E293B] mb-2">
             Preferred family amenities near charging stops
           </span>
-          <div className="flex flex-wrap gap-[8px]">
+          <div className="flex flex-wrap gap-2">
             {AMENITY_CHOICES.map((a) => {
               const active = amenities.includes(a.id);
               return (
@@ -379,8 +379,8 @@ export function TripPlannerPage() {
                   onClick={() => toggleAmenity(a.id)}
                   className={
                     active
-                      ? "cw-btn-primary py-[6px] px-[12px]"
-                      : "cw-btn-secondary py-[6px] px-[12px]"
+                      ? "cw-btn-primary !py-1.5 !px-3.5"
+                      : "cw-btn-secondary !py-1.5 !px-3.5"
                   }
                 >
                   {a.label}
@@ -390,26 +390,29 @@ export function TripPlannerPage() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-[16px] pt-[4px]">
-          <label className="flex items-center gap-[8px] text-[14px]">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-1 text-[#334155]">
+          <label className="flex items-center gap-2 text-[14px]">
             <input
               type="checkbox"
+              className="accent-[#2563EB] w-4 h-4"
               checked={preferFastDc}
               onChange={(e) => setPreferFastDc(e.target.checked)}
             />
             <span>Prefer DC fast chargers</span>
           </label>
-          <label className="flex items-center gap-[8px] text-[14px]">
+          <label className="flex items-center gap-2 text-[14px]">
             <input
               type="checkbox"
+              className="accent-[#2563EB] w-4 h-4"
               checked={includeUnverified}
               onChange={(e) => setIncludeUnverified(e.target.checked)}
             />
             <span>Include unverified listed chargers</span>
           </label>
-          <label className="flex items-center gap-[8px] text-[14px]">
+          <label className="flex items-center gap-2 text-[14px]">
             <input
               type="checkbox"
+              className="accent-[#2563EB] w-4 h-4"
               checked={saveTrip}
               onChange={(e) => setSaveTrip(e.target.checked)}
             />
@@ -417,7 +420,7 @@ export function TripPlannerPage() {
           </label>
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end pt-2">
           <button
             type="submit"
             disabled={planMut.isPending || vehicles.length === 0}

@@ -111,12 +111,13 @@ export function ProfilePage() {
   });
 
   return (
-    <div className="max-w-[920px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div>
-        <h1 className="text-[28px] font-semibold text-[#121317] m-0">
+    <div className="max-w-[920px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="space-y-1">
+        <span className="cw-eyebrow">Driver Settings</span>
+        <h1 className="text-[28px] sm:text-[34px] font-bold text-[#0F172A] leading-tight">
           Profile & Preferences
         </h1>
-        <p className="text-[15px] text-[#45474D] mt-[4px] mb-0">
+        <p className="text-[15px] text-[#475569]">
           Identity managed by Firebase Authentication; profile stored in PostgreSQL; settings stored in Cloud Firestore.
         </p>
       </div>
@@ -125,20 +126,20 @@ export function ProfilePage() {
       {errorMsg && <StatusAlert title="Error" message={errorMsg} variant="error" />}
 
       {/* Identity & PostgreSQL Profile */}
-      <section className="cw-card p-[24px] space-y-[16px]">
-        <div className="flex flex-wrap items-center justify-between gap-[10px]">
-          <h2 className="text-[18px] font-semibold text-[#121317] m-0">Account Identity</h2>
-          <div className="flex items-center gap-[8px]">
-            <span className="cw-pill">
+      <section className="cw-card p-6 sm:p-7 space-y-5">
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          <h2 className="text-[18px] font-bold text-[#0F172A]">Account Identity</h2>
+          <div className="flex items-center gap-2">
+            <span className={firebaseUser?.emailVerified ? "cw-pill cw-pill-verified" : "cw-pill cw-pill-warning"}>
               {firebaseUser?.emailVerified ? "Email Verified" : "Email Unverified"}
             </span>
             <span className="cw-pill cw-pill-accent">Role: {profile?.role || "user"}</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="prof-email" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="prof-email" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Email (Firebase Auth)
             </label>
             <input
@@ -149,18 +150,18 @@ export function ProfilePage() {
             />
           </div>
           <div>
-            <label htmlFor="prof-uid" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="prof-uid" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Firebase UID
             </label>
             <input
               id="prof-uid"
-              className="cw-input"
+              className="cw-input cw-num"
               value={firebaseUser?.uid || ""}
               disabled
             />
           </div>
           <div>
-            <label htmlFor="prof-name" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="prof-name" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Display name
             </label>
             <input
@@ -171,21 +172,21 @@ export function ProfilePage() {
             />
           </div>
           <div>
-            <label htmlFor="prof-phone" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="prof-phone" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Phone (optional)
             </label>
             <input
               id="prof-phone"
-              className="cw-input"
+              className="cw-input cw-num"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-[10px]">
+        <div className="flex items-center justify-between gap-3 pt-1">
           {!firebaseUser?.emailVerified ? (
-            <Link to="/verify-email" className="text-[13px] underline text-[#121317]">
+            <Link to="/verify-email" className="text-[13.5px] font-semibold text-[#1D4ED8] hover:underline">
               Verify email address
             </Link>
           ) : (
@@ -203,19 +204,19 @@ export function ProfilePage() {
       </section>
 
       {/* Firestore Preferences */}
-      <section className="cw-card p-[24px] space-y-[16px]">
-        <div className="flex items-center justify-between gap-[10px]">
-          <h2 className="text-[18px] font-semibold text-[#121317] m-0">
+      <section className="cw-card p-6 sm:p-7 space-y-5">
+        <div className="flex items-center justify-between gap-2.5">
+          <h2 className="text-[18px] font-bold text-[#0F172A]">
             Route & Notification Preferences (Cloud Firestore)
           </h2>
           {prefs && !prefs.firestoreAvailable && (
-            <span className="cw-pill">Firestore Offline</span>
+            <span className="cw-pill cw-pill-warning">Firestore Offline</span>
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="pref-units" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="pref-units" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Preferred units
             </label>
             <select
@@ -229,7 +230,7 @@ export function ProfilePage() {
             </select>
           </div>
           <div>
-            <label htmlFor="pref-map" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="pref-map" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Map display mode
             </label>
             <select
@@ -243,7 +244,7 @@ export function ProfilePage() {
             </select>
           </div>
           <div>
-            <label htmlFor="pref-reserve" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="pref-reserve" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Default reserve SOC (%)
             </label>
             <input
@@ -251,13 +252,13 @@ export function ProfilePage() {
               type="number"
               min={5}
               max={50}
-              className="cw-input"
+              className="cw-input cw-num"
               value={reserveSocPct}
               onChange={(e) => setReserveSocPct(Number(e.target.value))}
             />
           </div>
           <div>
-            <label htmlFor="pref-detour" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="pref-detour" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Default max detour (km)
             </label>
             <input
@@ -265,41 +266,45 @@ export function ProfilePage() {
               type="number"
               min={1}
               max={50}
-              className="cw-input"
+              className="cw-input cw-num"
               value={maxDetourKm}
               onChange={(e) => setMaxDetourKm(Number(e.target.value))}
             />
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-[16px] text-[14px]">
-          <label className="flex items-center gap-[8px]">
+        <div className="flex flex-wrap gap-4 text-[14px] text-[#334155]">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
+              className="accent-[#2563EB] w-4 h-4"
               checked={preferFastChargers}
               onChange={(e) => setPreferFastChargers(e.target.checked)}
             />
             <span>Prefer fast DC chargers</span>
           </label>
-          <label className="flex items-center gap-[8px]">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
+              className="accent-[#2563EB] w-4 h-4"
               checked={tripReminders}
               onChange={(e) => setTripReminders(e.target.checked)}
             />
             <span>Trip saved alerts</span>
           </label>
-          <label className="flex items-center gap-[8px]">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
+              className="accent-[#2563EB] w-4 h-4"
               checked={dataAlerts}
               onChange={(e) => setDataAlerts(e.target.checked)}
             />
             <span>Station verification updates</span>
           </label>
-          <label className="flex items-center gap-[8px]">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
+              className="accent-[#2563EB] w-4 h-4"
               checked={emailDigest}
               onChange={(e) => setEmailDigest(e.target.checked)}
             />
@@ -307,7 +312,7 @@ export function ProfilePage() {
           </label>
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end pt-1">
           <button
             type="button"
             disabled={prefMut.isPending}
@@ -320,29 +325,29 @@ export function ProfilePage() {
       </section>
 
       {/* Account Deletion */}
-      <section className="cw-card p-[24px] space-y-[12px]">
-        <h2 className="text-[18px] font-semibold text-[#121317] m-0">Delete Account</h2>
-        <p className="text-[14px] text-[#45474D] m-0">
+      <section className="cw-card p-6 sm:p-7 space-y-3 border-[#FDA4AF]/60">
+        <h2 className="text-[18px] font-bold text-[#0F172A]">Delete Account</h2>
+        <p className="text-[14px] text-[#475569] leading-relaxed">
           Permanently deletes your vehicles and trips in PostgreSQL, your Firestore user documents, and your Firebase Auth user.
         </p>
         {!confirmDelete ? (
           <button
             type="button"
             onClick={() => setConfirmDelete(true)}
-            className="cw-btn-secondary"
+            className="cw-btn-secondary hover:!text-[#BE123C] hover:!border-[#FDA4AF]"
           >
             Request Account Deletion
           </button>
         ) : (
-          <div className="flex flex-wrap items-center gap-[10px] cw-card-muted p-[14px]">
-            <span className="text-[14px] font-medium text-[#121317]">
+          <div className="flex flex-wrap items-center gap-2.5 cw-card-muted p-4">
+            <span className="text-[14px] font-semibold text-[#BE123C]">
               Are you sure? This action cannot be undone.
             </span>
             <button
               type="button"
               disabled={deleteMut.isPending}
               onClick={() => deleteMut.mutate()}
-              className="cw-btn-primary"
+              className="cw-btn-primary !bg-[#BE123C] !border-[#BE123C]"
             >
               {deleteMut.isPending ? "Deleting..." : "Confirm Permanent Delete"}
             </button>

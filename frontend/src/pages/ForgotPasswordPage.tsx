@@ -36,11 +36,12 @@ export function ForgotPasswordPage() {
   };
 
   return (
-    <div className="max-w-[460px] mx-auto px-[16px] py-[48px]">
-      <div className="cw-card p-[24px] sm:p-[36px] space-y-[20px]">
-        <div>
-          <h1 className="text-[28px] font-semibold text-[#121317] m-0">Reset password</h1>
-          <p className="text-[13px] text-[#45474D] mt-[6px] mb-0">
+    <div className="max-w-[460px] mx-auto px-4 py-12 sm:py-16">
+      <div className="cw-card p-6 sm:p-8 space-y-5">
+        <div className="space-y-1">
+          <span className="cw-eyebrow">Account Recovery</span>
+          <h1 className="text-[28px] font-bold text-[#0F172A] leading-tight">Reset password</h1>
+          <p className="text-[13.5px] text-[#475569]">
             Firebase Authentication will send a password reset link to your email.
           </p>
         </div>
@@ -53,14 +54,14 @@ export function ForgotPasswordPage() {
         )}
         {errorMsg && <StatusAlert title="Reset error" message={errorMsg} variant="error" />}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-[16px]" noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <div>
-            <label htmlFor="email" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="email" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Email address
             </label>
             <input id="email" type="email" className="cw-input" {...register("email")} />
             {errors.email && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">{errors.email.message}</p>
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">{errors.email.message}</p>
             )}
           </div>
           <button type="submit" disabled={submitting} className="cw-btn-primary w-full">
@@ -68,8 +69,8 @@ export function ForgotPasswordPage() {
           </button>
         </form>
 
-        <p className="text-[13px] text-center m-0">
-          <Link to="/login" className="text-[#121317] underline">
+        <p className="text-[13px] text-center">
+          <Link to="/login" className="font-semibold text-[#1D4ED8] hover:underline">
             Back to sign in
           </Link>
         </p>

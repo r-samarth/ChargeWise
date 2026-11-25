@@ -59,13 +59,14 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="max-w-[460px] mx-auto px-[16px] py-[48px]">
-      <div className="cw-card p-[24px] sm:p-[36px] space-y-[20px]">
-        <div>
-          <h1 className="text-[28px] font-semibold text-[#121317] m-0">
+    <div className="max-w-[460px] mx-auto px-4 py-12 sm:py-16">
+      <div className="cw-card p-6 sm:p-8 space-y-5">
+        <div className="space-y-1">
+          <span className="cw-eyebrow">Get Started</span>
+          <h1 className="text-[28px] font-bold text-[#0F172A] leading-tight">
             Create your ChargeWise account
           </h1>
-          <p className="text-[13px] text-[#45474D] mt-[6px] mb-0">
+          <p className="text-[13.5px] text-[#475569]">
             Secured by Firebase Authentication. Save EVs and plan Karnataka journeys.
           </p>
         </div>
@@ -74,9 +75,9 @@ export function RegisterPage() {
           <StatusAlert title="Registration failed" message={errorMsg} variant="error" />
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-[16px]" noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <div>
-            <label htmlFor="displayName" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="displayName" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Full name
             </label>
             <input
@@ -87,14 +88,14 @@ export function RegisterPage() {
               {...register("displayName")}
             />
             {errors.displayName && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">
                 {errors.displayName.message}
               </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="email" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Email address
             </label>
             <input
@@ -105,12 +106,12 @@ export function RegisterPage() {
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">{errors.email.message}</p>
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">{errors.email.message}</p>
             )}
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="password" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Password
             </label>
             <input
@@ -121,12 +122,12 @@ export function RegisterPage() {
               {...register("password")}
             />
             {errors.password && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">{errors.password.message}</p>
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">{errors.password.message}</p>
             )}
           </div>
 
           <div>
-            <label htmlFor="confirmPassword" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="confirmPassword" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Confirm password
             </label>
             <input
@@ -137,7 +138,7 @@ export function RegisterPage() {
               {...register("confirmPassword")}
             />
             {errors.confirmPassword && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">
                 {errors.confirmPassword.message}
               </p>
             )}
@@ -148,7 +149,7 @@ export function RegisterPage() {
           </button>
         </form>
 
-        <div className="border-t border-[#E6EAF0] pt-[16px] space-y-[12px]">
+        <div className="border-t border-slate-200/75 pt-4 space-y-3">
           <button
             type="button"
             disabled={submitting}
@@ -157,9 +158,9 @@ export function RegisterPage() {
           >
             Continue with Google
           </button>
-          <p className="text-[13px] text-[#45474D] text-center m-0">
+          <p className="text-[13px] text-[#475569] text-center">
             Already registered?{" "}
-            <Link to="/login" className="font-medium text-[#121317] underline">
+            <Link to="/login" className="font-semibold text-[#1D4ED8] hover:underline">
               Sign in
             </Link>
           </p>

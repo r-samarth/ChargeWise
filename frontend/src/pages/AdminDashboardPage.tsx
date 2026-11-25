@@ -175,10 +175,10 @@ export function AdminDashboardPage() {
   });
 
   return (
-    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div>
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="space-y-1.5">
         <span className="cw-pill cw-pill-verified">Admin RBAC Enforced</span>
-        <h1 className="text-[28px] sm:text-[36px] font-semibold text-[#121317] mt-[8px] mb-0">
+        <h1 className="text-[28px] sm:text-[34px] font-bold text-[#0F172A] leading-tight">
           Infrastructure Data Curation & Quality
         </h1>
       </div>
@@ -186,7 +186,7 @@ export function AdminDashboardPage() {
       {feedback && <StatusAlert title="Completed" message={feedback} />}
       {errorMsg && <StatusAlert title="Action failed" message={errorMsg} variant="error" />}
 
-      <div className="flex flex-wrap gap-[8px]" role="tablist">
+      <div className="flex flex-wrap gap-2" role="tablist">
         {[
           { id: "quality", label: "Data Quality & Analytics" },
           { id: "stations", label: "Stations & Verification" },
@@ -208,60 +208,88 @@ export function AdminDashboardPage() {
       </div>
 
       {tab === "quality" && quality && (
-        <div className="space-y-[20px]">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-[14px]">
-            <div className="cw-card p-[16px]">
-              <p className="text-[11px] text-[#6A6A71] m-0">Active Stations</p>
-              <p className="text-[24px] font-semibold m-0 mt-[4px]">{quality.active_stations}</p>
+        <div className="space-y-5">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-3.5">
+            <div className="cw-card p-4">
+              <p className="text-[12px] font-medium text-[#64748B]">Active Stations</p>
+              <p className="text-[26px] font-bold text-[#0F172A] mt-1 cw-num">
+                {quality.active_stations}
+              </p>
             </div>
-            <div className="cw-card p-[16px]">
-              <p className="text-[11px] text-[#6A6A71] m-0">Connectors</p>
-              <p className="text-[24px] font-semibold m-0 mt-[4px]">{quality.total_connectors}</p>
+            <div className="cw-card p-4">
+              <p className="text-[12px] font-medium text-[#64748B]">Connectors</p>
+              <p className="text-[26px] font-bold text-[#1D4ED8] mt-1 cw-num">
+                {quality.total_connectors}
+              </p>
             </div>
-            <div className="cw-card p-[16px]">
-              <p className="text-[11px] text-[#6A6A71] m-0">Unverified Pricing</p>
-              <p className="text-[24px] font-semibold m-0 mt-[4px]">{quality.unverified_pricing_count}</p>
+            <div className="cw-card p-4">
+              <p className="text-[12px] font-medium text-[#64748B]">Unverified Pricing</p>
+              <p className="text-[26px] font-bold text-[#B45309] mt-1 cw-num">
+                {quality.unverified_pricing_count}
+              </p>
             </div>
-            <div className="cw-card p-[16px]">
-              <p className="text-[11px] text-[#6A6A71] m-0">Pending Duplicates</p>
-              <p className="text-[24px] font-semibold m-0 mt-[4px]">{quality.pending_duplicate_reviews}</p>
+            <div className="cw-card p-4">
+              <p className="text-[12px] font-medium text-[#64748B]">Pending Duplicates</p>
+              <p className="text-[26px] font-bold text-[#0F172A] mt-1 cw-num">
+                {quality.pending_duplicate_reviews}
+              </p>
             </div>
-            <div className="cw-card p-[16px]">
-              <p className="text-[11px] text-[#6A6A71] m-0">Failed Outbox Syncs</p>
-              <p className="text-[24px] font-semibold m-0 mt-[4px]">{quality.failed_outbox_events}</p>
+            <div className="cw-card p-4">
+              <p className="text-[12px] font-medium text-[#64748B]">Failed Outbox Syncs</p>
+              <p
+                className={`text-[26px] font-bold mt-1 cw-num ${
+                  quality.failed_outbox_events > 0 ? "text-[#BE123C]" : "text-[#0F766E]"
+                }`}
+              >
+                {quality.failed_outbox_events}
+              </p>
             </div>
           </div>
 
           {overview && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[20px]">
-              <div className="cw-card p-[20px]">
-                <h2 className="text-[16px] font-semibold m-0 mb-[12px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+              <div className="cw-card p-5">
+                <h2 className="text-[16px] font-bold text-[#0F172A] mb-3">
                   Stations by District (Live PostgreSQL)
                 </h2>
                 <div style={{ width: "100%", height: 280 }}>
                   <ResponsiveContainer>
                     <BarChart data={overview.stations_by_district.slice(0, 8)}>
-                      <CartesianGrid stroke="#E6EAF0" strokeDasharray="3 3" />
-                      <XAxis dataKey="district" tick={{ fontSize: 11, fill: "#45474D" }} />
-                      <YAxis tick={{ fontSize: 11, fill: "#45474D" }} />
-                      <Tooltip />
-                      <Bar dataKey="count" fill="#121317" radius={[8, 8, 0, 0]} />
+                      <CartesianGrid stroke="rgba(148, 163, 184, 0.25)" strokeDasharray="3 3" />
+                      <XAxis dataKey="district" tick={{ fontSize: 11, fill: "#475569" }} />
+                      <YAxis tick={{ fontSize: 11, fill: "#475569" }} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "rgba(255,255,255,0.94)",
+                          borderColor: "rgba(191,219,254,0.85)",
+                          borderRadius: "14px",
+                          fontSize: "13px",
+                        }}
+                      />
+                      <Bar dataKey="count" fill="#2563EB" radius={[8, 8, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
               </div>
-              <div className="cw-card p-[20px]">
-                <h2 className="text-[16px] font-semibold m-0 mb-[12px]">
+              <div className="cw-card p-5">
+                <h2 className="text-[16px] font-bold text-[#0F172A] mb-3">
                   Stations by Operator (Live PostgreSQL)
                 </h2>
                 <div style={{ width: "100%", height: 280 }}>
                   <ResponsiveContainer>
                     <BarChart data={overview.stations_by_operator.slice(0, 8)}>
-                      <CartesianGrid stroke="#E6EAF0" strokeDasharray="3 3" />
-                      <XAxis dataKey="operator" tick={{ fontSize: 11, fill: "#45474D" }} />
-                      <YAxis tick={{ fontSize: 11, fill: "#45474D" }} />
-                      <Tooltip />
-                      <Bar dataKey="count" fill="#45474D" radius={[8, 8, 0, 0]} />
+                      <CartesianGrid stroke="rgba(148, 163, 184, 0.25)" strokeDasharray="3 3" />
+                      <XAxis dataKey="operator" tick={{ fontSize: 11, fill: "#475569" }} />
+                      <YAxis tick={{ fontSize: 11, fill: "#475569" }} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "rgba(255,255,255,0.94)",
+                          borderColor: "rgba(191,219,254,0.85)",
+                          borderRadius: "14px",
+                          fontSize: "13px",
+                        }}
+                      />
+                      <Bar dataKey="count" fill="#0D9488" radius={[8, 8, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -272,10 +300,10 @@ export function AdminDashboardPage() {
       )}
 
       {tab === "stations" && (
-        <div className="space-y-[20px]">
-          <div className="cw-card p-[24px] space-y-[14px]">
-            <h2 className="text-[18px] font-semibold m-0">Add Verified Station</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[12px]">
+        <div className="space-y-5">
+          <div className="cw-card p-6 space-y-4">
+            <h2 className="text-[18px] font-bold text-[#0F172A]">Add Verified Station</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <input
                 className="cw-input"
                 placeholder="Station name"
@@ -312,10 +340,10 @@ export function AdminDashboardPage() {
                 value={stDistrict}
                 onChange={(e) => setStDistrict(e.target.value)}
               />
-              <div className="grid grid-cols-3 gap-[6px]">
-                <input className="cw-input" placeholder="Lat" value={stLat} onChange={(e) => setStLat(e.target.value)} />
-                <input className="cw-input" placeholder="Lon" value={stLon} onChange={(e) => setStLon(e.target.value)} />
-                <input className="cw-input" placeholder="kW" value={stPower} onChange={(e) => setStPower(e.target.value)} />
+              <div className="grid grid-cols-3 gap-2">
+                <input className="cw-input cw-num" placeholder="Lat" value={stLat} onChange={(e) => setStLat(e.target.value)} />
+                <input className="cw-input cw-num" placeholder="Lon" value={stLon} onChange={(e) => setStLon(e.target.value)} />
+                <input className="cw-input cw-num" placeholder="kW" value={stPower} onChange={(e) => setStPower(e.target.value)} />
               </div>
             </div>
             <button
@@ -328,24 +356,24 @@ export function AdminDashboardPage() {
             </button>
           </div>
 
-          <div className="cw-card p-[24px] space-y-[10px]">
-            <h2 className="text-[18px] font-semibold m-0">Recent Stations Verification</h2>
+          <div className="cw-card p-6 space-y-3">
+            <h2 className="text-[18px] font-bold text-[#0F172A]">Recent Stations Verification</h2>
             {stationList?.items.map((s) => (
               <div
                 key={s.id}
-                className="cw-card-muted p-[12px] flex flex-col sm:flex-row sm:items-center justify-between gap-[10px]"
+                className="cw-card-muted p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
               >
-                <div>
-                  <p className="text-[14px] font-medium m-0">{s.name}</p>
-                  <p className="text-[12px] text-[#45474D] m-0">
+                <div className="space-y-0.5">
+                  <p className="text-[14.5px] font-semibold text-[#0F172A]">{s.name}</p>
+                  <p className="text-[12.5px] text-[#475569]">
                     {s.city} · Status: {s.verification_status}
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-[6px]">
+                <div className="flex flex-wrap gap-2 shrink-0">
                   <button
                     type="button"
                     onClick={() => verifyMut.mutate({ id: s.id, status: "location_verified" })}
-                    className="cw-btn-secondary py-[5px] px-[10px]"
+                    className="cw-btn-secondary !py-1.5 !px-3"
                   >
                     Mark Location Verified
                   </button>
@@ -354,7 +382,7 @@ export function AdminDashboardPage() {
                     onClick={() =>
                       verifyMut.mutate({ id: s.id, status: "operational_status_verified" })
                     }
-                    className="cw-btn-primary py-[5px] px-[10px]"
+                    className="cw-btn-primary !py-1.5 !px-3"
                   >
                     Mark Operational Verified
                   </button>
@@ -366,9 +394,9 @@ export function AdminDashboardPage() {
       )}
 
       {tab === "import" && (
-        <div className="cw-card p-[24px] space-y-[14px]">
-          <h2 className="text-[18px] font-semibold m-0">CSV Bulk Import with Deduplication</h2>
-          <p className="text-[14px] text-[#45474D] m-0">
+        <div className="cw-card p-6 space-y-4">
+          <h2 className="text-[18px] font-bold text-[#0F172A]">CSV Bulk Import with Deduplication</h2>
+          <p className="text-[14px] text-[#475569]">
             Required headers: <code>name,address,city,district,latitude,longitude</code> (optional: <code>operator,connector_type,power_kw,source_id</code>).
           </p>
           <input
@@ -389,38 +417,38 @@ export function AdminDashboardPage() {
       )}
 
       {tab === "duplicates" && (
-        <div className="cw-card p-[24px] space-y-[12px]">
-          <h2 className="text-[18px] font-semibold m-0">Pending Duplicate Review Queue</h2>
+        <div className="cw-card p-6 space-y-3.5">
+          <h2 className="text-[18px] font-bold text-[#0F172A]">Pending Duplicate Review Queue</h2>
           {duplicates.length === 0 ? (
-            <p className="text-[14px] text-[#45474D] m-0">No ambiguous duplicate records awaiting review.</p>
+            <p className="text-[14px] text-[#475569]">No ambiguous duplicate records awaiting review.</p>
           ) : (
             duplicates.map((d) => (
-              <div key={d.id} className="cw-card-muted p-[14px] flex flex-col sm:flex-row sm:items-center justify-between gap-[10px]">
-                <div>
-                  <p className="text-[14px] font-medium m-0">
+              <div key={d.id} className="cw-card-muted p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="space-y-0.5">
+                  <p className="text-[14.5px] font-semibold text-[#0F172A] cw-num">
                     {d.raw_name} ({d.source_name}) — Match Score {d.match_score}
                   </p>
-                  <p className="text-[12px] text-[#45474D] m-0">{d.raw_operator || "Unknown operator"}</p>
+                  <p className="text-[12.5px] text-[#475569]">{d.raw_operator || "Unknown operator"}</p>
                 </div>
-                <div className="flex gap-[8px]">
+                <div className="flex flex-wrap gap-2 shrink-0">
                   <button
                     type="button"
                     onClick={() => resolveDupMut.mutate({ id: d.id, action: "merge_into_station" })}
-                    className="cw-btn-primary py-[5px] px-[12px]"
+                    className="cw-btn-primary !py-1.5 !px-3"
                   >
                     Merge
                   </button>
                   <button
                     type="button"
                     onClick={() => resolveDupMut.mutate({ id: d.id, action: "create_new_station" })}
-                    className="cw-btn-secondary py-[5px] px-[12px]"
+                    className="cw-btn-secondary !py-1.5 !px-3"
                   >
                     Create Distinct
                   </button>
                   <button
                     type="button"
                     onClick={() => resolveDupMut.mutate({ id: d.id, action: "reject_duplicate" })}
-                    className="cw-btn-secondary py-[5px] px-[12px]"
+                    className="cw-btn-secondary !py-1.5 !px-3"
                   >
                     Reject
                   </button>
@@ -432,15 +460,15 @@ export function AdminDashboardPage() {
       )}
 
       {tab === "audit" && (
-        <div className="cw-card p-[24px] space-y-[10px]">
-          <h2 className="text-[18px] font-semibold m-0">Administrative Audit History</h2>
+        <div className="cw-card p-6 space-y-2.5">
+          <h2 className="text-[18px] font-bold text-[#0F172A]">Administrative Audit History</h2>
           {auditLogs.length === 0 ? (
-            <p className="text-[14px] text-[#45474D] m-0">No audit entries yet.</p>
+            <p className="text-[14px] text-[#475569]">No audit entries yet.</p>
           ) : (
             auditLogs.map((log) => (
-              <div key={log.id} className="cw-card-muted p-[12px] text-[13px]">
-                <strong className="text-[#121317]">{log.action}</strong> · {log.entity_type}{" "}
-                <span className="text-[#6A6A71]">({new Date(log.created_at).toLocaleString()})</span>
+              <div key={log.id} className="cw-card-muted p-3 text-[13px] cw-num">
+                <strong className="text-[#0F172A]">{log.action}</strong> · {log.entity_type}{" "}
+                <span className="text-[#64748B]">({new Date(log.created_at).toLocaleString()})</span>
               </div>
             ))
           )}

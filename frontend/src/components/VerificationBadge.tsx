@@ -9,7 +9,7 @@ import {
 
 const LABELS: Record<
   string,
-  { label: string; style: "verified" | "accent" | "muted" }
+  { label: string; style: "verified" | "accent" | "warning" | "muted" }
 > = {
   live_availability_confirmed: {
     label: "Live Availability Confirmed",
@@ -29,7 +29,7 @@ const LABELS: Record<
   },
   temporarily_unavailable: {
     label: "Temporarily Unavailable",
-    style: "muted",
+    style: "warning",
   },
   unknown_or_stale: {
     label: "Unknown or Stale",
@@ -48,6 +48,8 @@ export function VerificationBadge({ status }: { status: string }) {
       ? "cw-pill cw-pill-verified"
       : cfg.style === "accent"
       ? "cw-pill cw-pill-accent"
+      : cfg.style === "warning"
+      ? "cw-pill cw-pill-warning"
       : "cw-pill";
 
   const Icon =
@@ -82,9 +84,18 @@ export function AvailabilityBadge({ status }: { status: string }) {
       ? "Unavailable"
       : "Live Status: Unknown";
 
+  const cls =
+    normalized === "available"
+      ? "cw-pill cw-pill-verified"
+      : normalized === "occupied"
+      ? "cw-pill cw-pill-warning"
+      : normalized === "unavailable"
+      ? "cw-pill cw-pill-danger"
+      : "cw-pill";
+
   return (
     <span
-      className={normalized === "available" ? "cw-pill cw-pill-verified" : "cw-pill"}
+      className={cls}
       title="ChargeWise never fabricates live charger occupancy."
     >
       {text}

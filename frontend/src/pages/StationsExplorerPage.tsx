@@ -40,25 +40,26 @@ export function StationsExplorerPage() {
   const stations = data?.items || [];
 
   return (
-    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div>
-        <h1 className="text-[28px] sm:text-[36px] font-semibold text-[#121317] m-0">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="space-y-1">
+        <span className="cw-eyebrow">Karnataka Registry & Trust Filter</span>
+        <h1 className="text-[28px] sm:text-[34px] font-bold text-[#0F172A] leading-tight">
           Karnataka Charging Station Explorer
         </h1>
-        <p className="text-[15px] text-[#45474D] mt-[4px] mb-0">
+        <p className="text-[15px] text-[#475569]">
           Filter by district, operator, connector standard, and verification trust level.
         </p>
       </div>
 
       {/* Filters */}
-      <section className="cw-card p-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-[12px]">
+      <section className="cw-card p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
         <div className="lg:col-span-2 relative">
           <label htmlFor="station-search" className="sr-only">
             Search stations
           </label>
           <input
             id="station-search"
-            className="cw-input pl-[36px]"
+            className="cw-input !pl-10"
             placeholder="Search city, station, or address..."
             value={q}
             onChange={(e) => {
@@ -68,7 +69,7 @@ export function StationsExplorerPage() {
           />
           <Search
             size={16}
-            className="absolute left-[12px] top-[14px] text-[#6A6A71]"
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none"
             aria-hidden="true"
           />
         </div>
@@ -140,17 +141,17 @@ export function StationsExplorerPage() {
         </select>
       </section>
 
-      <div className="flex flex-wrap items-center justify-between gap-[10px]">
-        <p className="text-[13px] text-[#45474D] m-0">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-[13.5px] font-medium text-[#475569] cw-num">
           {data ? `Showing ${stations.length} of ${data.total} matching stations` : "Loading..."}
         </p>
-        <div className="flex items-center gap-[8px]">
-          <label htmlFor="minPower" className="text-[13px] text-[#45474D]">
+        <div className="flex items-center gap-2.5">
+          <label htmlFor="minPower" className="text-[13px] font-medium text-[#475569]">
             Min kW:
           </label>
           <select
             id="minPower"
-            className="cw-input w-auto py-[6px]"
+            className="cw-input !w-auto !py-1.5"
             value={minPower}
             onChange={(e) => {
               setMinPower(e.target.value);
@@ -174,38 +175,41 @@ export function StationsExplorerPage() {
       )}
 
       {/* Map */}
-      <div className="cw-card p-[14px]">
+      <div className="cw-card p-3.5">
         <StationMap stations={stations} center={[12.82, 76.1]} zoom={7} height="420px" />
       </div>
 
       {/* Station Cards */}
       {isLoading ? (
-        <div className="cw-card p-[24px] text-[#45474D]">Loading stations...</div>
+        <div className="cw-card p-6 text-[#475569]">Loading stations...</div>
       ) : stations.length === 0 ? (
-        <div className="cw-card p-[36px] text-center">
-          <p className="text-[15px] text-[#45474D] m-0">
+        <div className="cw-card p-9 text-center">
+          <p className="text-[15px] text-[#475569]">
             No stations matched your filters. Try clearing connector or district filters.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {stations.map((s) => (
-            <article key={s.id} className="cw-card p-[20px] flex flex-col justify-between gap-[14px]">
-              <div className="space-y-[8px]">
-                <div className="flex flex-wrap gap-[6px]">
+            <article
+              key={s.id}
+              className="cw-card cw-card-interactive p-5 flex flex-col justify-between gap-4"
+            >
+              <div className="space-y-2.5">
+                <div className="flex flex-wrap gap-1.5">
                   <VerificationBadge status={s.verification_status} />
                   <AvailabilityBadge
                     status={s.connectors[0]?.availability_status || "unknown"}
                   />
                 </div>
-                <h2 className="text-[18px] font-semibold text-[#121317] m-0">{s.name}</h2>
-                <p className="text-[13px] text-[#45474D] m-0">
+                <h2 className="text-[17.5px] font-bold text-[#0F172A] leading-snug">{s.name}</h2>
+                <p className="text-[13px] font-medium text-[#334155]">
                   {s.operator?.name || "Independent"} · {s.city}, {s.district}
                 </p>
-                <p className="text-[13px] text-[#6A6A71] m-0 line-clamp-2">{s.address}</p>
-                <div className="flex flex-wrap gap-[6px] pt-[4px]">
+                <p className="text-[13px] text-[#64748B] line-clamp-2 leading-relaxed">{s.address}</p>
+                <div className="flex flex-wrap gap-1.5 pt-1">
                   {s.connectors.map((c) => (
-                    <span key={c.id} className="cw-pill">
+                    <span key={c.id} className="cw-pill cw-pill-accent cw-num">
                       {c.connector_type}{" "}
                       {c.power_kw ? `· ${c.power_kw} kW` : "· Power unknown"}
                     </span>
@@ -213,11 +217,11 @@ export function StationsExplorerPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between gap-[8px] pt-[10px] border-t border-[#E6EAF0]">
-                <span className="text-[11px] text-[#6A6A71]">
+              <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-200/75">
+                <span className="text-[12px] text-[#64748B] truncate">
                   {s.pricing_verified && s.pricing_info ? s.pricing_info : "Pricing unverified"}
                 </span>
-                <Link to={`/stations/${s.id}`} className="cw-btn-primary py-[6px] px-[14px]">
+                <Link to={`/stations/${s.id}`} className="cw-btn-primary !py-1.5 !px-3.5 shrink-0">
                   Details
                 </Link>
               </div>
@@ -227,7 +231,7 @@ export function StationsExplorerPage() {
       )}
 
       {data && data.total > data.page_size && (
-        <div className="flex items-center justify-center gap-[12px]">
+        <div className="flex items-center justify-center gap-3 pt-2">
           <button
             type="button"
             disabled={page <= 1}
@@ -236,7 +240,7 @@ export function StationsExplorerPage() {
           >
             Previous
           </button>
-          <span className="text-[13px] text-[#45474D]">
+          <span className="text-[13.5px] font-medium text-[#475569] cw-num">
             Page {page} of {Math.ceil(data.total / data.page_size)}
           </span>
           <button

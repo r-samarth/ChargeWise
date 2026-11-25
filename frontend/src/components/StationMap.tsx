@@ -11,21 +11,26 @@ import type { Station } from "../types/api";
 import { VerificationBadge } from "./VerificationBadge";
 
 function makeStationIcon(verified: boolean, label?: string) {
-  const bg = verified ? "#121317" : "#45474D";
-  const border = verified ? "#B7BFD9" : "#E6EAF0";
+  const bg = verified
+    ? "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)"
+    : "linear-gradient(135deg, #475569 0%, #334155 100%)";
+  const border = verified ? "#DBEAFE" : "#E2E8F0";
+  const shadow = verified
+    ? "0 4px 12px rgba(37, 99, 235, 0.42)"
+    : "0 3px 10px rgba(15, 23, 42, 0.22)";
   const text = label || "⚡";
   return L.divIcon({
     className: "cw-map-pin",
-    html: `<div style="background:${bg};color:#FFFFFF;border:2px solid ${border};border-radius:999px;min-width:28px;height:28px;padding:0 6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;box-shadow:0 2px 8px rgba(18,19,23,0.18);font-family:'Google Sans Flex',sans-serif;">${text}</div>`,
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
+    html: `<div style="background:${bg};color:#FFFFFF;border:2px solid ${border};border-radius:999px;min-width:30px;height:30px;padding:0 7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;box-shadow:${shadow};font-family:'Plus Jakarta Sans','Inter',sans-serif;">${text}</div>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
   });
 }
 
 function makeClusterIcon(count: number) {
   return L.divIcon({
     className: "cw-map-cluster",
-    html: `<div style="background:#B7BFD9;color:#121317;border:2px solid #121317;border-radius:999px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;box-shadow:0 2px 8px rgba(18,19,23,0.16);font-family:'Google Sans Flex',sans-serif;">${count}</div>`,
+    html: `<div style="background:rgba(219,234,254,0.92);backdrop-filter:blur(8px);color:#1E40AF;border:2px solid #2563EB;border-radius:999px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;box-shadow:0 4px 14px rgba(37,99,235,0.28);font-family:'Plus Jakarta Sans','Inter',sans-serif;">${count}</div>`,
     iconSize: [36, 36],
     iconAnchor: [18, 18],
   });

@@ -55,13 +55,14 @@ export function LoginPage() {
   };
 
   return (
-    <div className="max-w-[460px] mx-auto px-[16px] py-[48px]">
-      <div className="cw-card p-[24px] sm:p-[36px] space-y-[20px]">
-        <div>
-          <h1 className="text-[28px] font-semibold text-[#121317] m-0">
+    <div className="max-w-[460px] mx-auto px-4 py-12 sm:py-16">
+      <div className="cw-card p-6 sm:p-8 space-y-5">
+        <div className="space-y-1">
+          <span className="cw-eyebrow">Welcome Back</span>
+          <h1 className="text-[28px] font-bold text-[#0F172A] leading-tight">
             Sign in to ChargeWise
           </h1>
-          <p className="text-[13px] text-[#45474D] mt-[6px] mb-0">
+          <p className="text-[13.5px] text-[#475569]">
             Access your saved EVs, trip history, and notification inbox.
           </p>
         </div>
@@ -70,9 +71,9 @@ export function LoginPage() {
           <StatusAlert title="Sign-in failed" message={errorMsg} variant="error" />
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-[16px]" noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <div>
-            <label htmlFor="email" className="block text-[13px] font-medium text-[#121317] mb-[6px]">
+            <label htmlFor="email" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Email address
             </label>
             <input
@@ -83,16 +84,16 @@ export function LoginPage() {
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">{errors.email.message}</p>
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">{errors.email.message}</p>
             )}
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-[6px]">
-              <label htmlFor="password" className="text-[13px] font-medium text-[#121317]">
+            <div className="flex items-center justify-between mb-1.5">
+              <label htmlFor="password" className="text-[13px] font-semibold text-[#1E293B]">
                 Password
               </label>
-              <Link to="/forgot-password" className="text-[13px] text-[#45474D] underline">
+              <Link to="/forgot-password" className="text-[13px] font-medium text-[#1D4ED8] hover:underline">
                 Forgot password?
               </Link>
             </div>
@@ -104,7 +105,7 @@ export function LoginPage() {
               {...register("password")}
             />
             {errors.password && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">{errors.password.message}</p>
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">{errors.password.message}</p>
             )}
           </div>
 
@@ -113,7 +114,7 @@ export function LoginPage() {
           </button>
         </form>
 
-        <div className="border-t border-[#E6EAF0] pt-[16px] space-y-[12px]">
+        <div className="border-t border-slate-200/75 pt-4 space-y-3">
           <button
             type="button"
             disabled={submitting}
@@ -122,9 +123,9 @@ export function LoginPage() {
           >
             Sign in with Google
           </button>
-          <p className="text-[13px] text-[#45474D] text-center m-0">
+          <p className="text-[13px] text-[#475569] text-center">
             New to ChargeWise?{" "}
-            <Link to="/register" className="font-medium text-[#121317] underline">
+            <Link to="/register" className="font-semibold text-[#1D4ED8] hover:underline">
               Create an account
             </Link>
           </p>

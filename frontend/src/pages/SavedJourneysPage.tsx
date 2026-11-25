@@ -19,15 +19,18 @@ export function SavedJourneysPage() {
   });
 
   return (
-    <div className="max-w-[1120px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-[16px]">
-        <div>
-          <h1 className="text-[28px] font-semibold text-[#121317] m-0">Saved Journeys</h1>
-          <p className="text-[15px] text-[#45474D] mt-[4px] mb-0">
+    <div className="max-w-[1120px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <span className="cw-eyebrow">Bookmarks</span>
+          <h1 className="text-[28px] sm:text-[34px] font-bold text-[#0F172A] leading-tight">
+            Saved Journeys
+          </h1>
+          <p className="text-[15px] text-[#475569]">
             Revisit your bookmarked Karnataka EV routes and charging stop plans.
           </p>
         </div>
-        <Link to="/plan" className="cw-btn-primary">
+        <Link to="/plan" className="cw-btn-primary shrink-0">
           Plan New Journey
         </Link>
       </div>
@@ -37,10 +40,10 @@ export function SavedJourneysPage() {
       )}
 
       {isLoading ? (
-        <div className="cw-card p-[24px] text-[#45474D]">Loading saved journeys...</div>
+        <div className="cw-card p-6 text-[#475569]">Loading saved journeys...</div>
       ) : trips.length === 0 ? (
-        <div className="cw-card p-[36px] text-center space-y-[12px]">
-          <p className="text-[15px] text-[#45474D] m-0">
+        <div className="cw-card p-9 text-center space-y-3.5">
+          <p className="text-[15px] text-[#475569]">
             You have no saved journeys yet.
           </p>
           <Link to="/plan" className="cw-btn-primary">
@@ -48,31 +51,31 @@ export function SavedJourneysPage() {
           </Link>
         </div>
       ) : (
-        <div className="space-y-[12px]">
+        <div className="space-y-3">
           {trips.map((t) => (
             <div
               key={t.id}
-              className="cw-card p-[20px] flex flex-col sm:flex-row sm:items-center justify-between gap-[14px]"
+              className="cw-card cw-card-interactive p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
-              <div className="space-y-[4px]">
-                <h2 className="text-[18px] font-semibold text-[#121317] m-0">{t.title}</h2>
-                <p className="text-[13px] text-[#45474D] m-0">
+              <div className="space-y-1">
+                <h2 className="text-[18px] font-bold text-[#0F172A]">{t.title}</h2>
+                <p className="text-[13.5px] font-medium text-[#334155] cw-num">
                   {t.total_distance_km} km · Drive {t.estimated_drive_minutes}m + Charge{" "}
                   {t.estimated_charge_minutes}m · Arrival SOC {t.arrival_soc_pct}%
                 </p>
-                <p className="text-[11px] text-[#6A6A71] m-0">
+                <p className="text-[12px] text-[#64748B] cw-num">
                   Created {new Date(t.created_at).toLocaleString()}
                 </p>
               </div>
-              <div className="flex items-center gap-[8px]">
-                <Link to={`/trips/${t.id}`} className="cw-btn-primary py-[6px] px-[14px]">
+              <div className="flex items-center gap-2 shrink-0">
+                <Link to={`/trips/${t.id}`} className="cw-btn-primary !py-1.5 !px-4">
                   Open Route
                 </Link>
                 <button
                   type="button"
                   disabled={deleteMut.isPending}
                   onClick={() => deleteMut.mutate(t.id)}
-                  className="cw-btn-secondary py-[6px] px-[12px]"
+                  className="cw-btn-secondary !py-1.5 !px-3 hover:!text-[#BE123C] hover:!border-[#FDA4AF]"
                   aria-label={`Delete ${t.title}`}
                 >
                   <Trash2 size={14} aria-hidden="true" />

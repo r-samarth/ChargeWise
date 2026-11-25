@@ -12,7 +12,7 @@ import type { TripPlanResponse } from "../types/api";
 function makePin(text: string, dark = true) {
   return L.divIcon({
     className: "cw-route-pin",
-    html: `<div style="background:${dark ? "#121317" : "#FFFFFF"};color:${dark ? "#FFFFFF" : "#121317"};border:2px solid ${dark ? "#B7BFD9" : "#121317"};border-radius:999px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(18,19,23,0.18);font-family:'Google Sans Flex',sans-serif;">${text}</div>`,
+    html: `<div style="background:${dark ? "linear-gradient(135deg,#2563EB,#1D4ED8)" : "rgba(255,255,255,0.94)"};color:${dark ? "#FFFFFF" : "#0F172A"};border:2px solid ${dark ? "#DBEAFE" : "#2563EB"};border-radius:999px;padding:3px 11px;font-size:11px;font-weight:700;white-space:nowrap;box-shadow:0 4px 12px rgba(15,23,42,0.22);font-family:'Plus Jakarta Sans','Inter',sans-serif;">${text}</div>`,
     iconSize: [28, 24],
     iconAnchor: [14, 12],
   });
@@ -59,7 +59,7 @@ export function TripRouteMap({
         />
         <Polyline
           positions={polylineCoords}
-          pathOptions={{ color: "#121317", weight: 4, opacity: 0.9 }}
+          pathOptions={{ color: "#2563EB", weight: 5, opacity: 0.92 }}
         />
 
         <Marker

@@ -159,40 +159,41 @@ export function VehicleFormPage() {
   });
 
   return (
-    <div className="max-w-[920px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div className="flex items-center justify-between gap-[12px]">
-        <div>
-          <h1 className="text-[28px] font-semibold text-[#121317] m-0">
+    <div className="max-w-[920px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="space-y-1">
+          <span className="cw-eyebrow">Vehicle Specs</span>
+          <h1 className="text-[28px] sm:text-[32px] font-bold text-[#0F172A] leading-tight">
             {isEdit ? "Edit EV" : "Add an Electric Vehicle"}
           </h1>
-          <p className="text-[15px] text-[#45474D] mt-[4px] mb-0">
+          <p className="text-[15px] text-[#475569]">
             Choose a verified Indian EV template or enter custom specs directly.
           </p>
         </div>
-        <Link to="/vehicles" className="cw-btn-secondary">
+        <Link to="/vehicles" className="cw-btn-secondary shrink-0">
           Back to Garage
         </Link>
       </div>
 
       {!isEdit && catalog.length > 0 && (
-        <section className="cw-card p-[20px] space-y-[12px]">
-          <p className="text-[13px] font-medium text-[#121317] m-0">
+        <section className="cw-card p-5 space-y-3">
+          <p className="text-[13px] font-semibold text-[#1E293B]">
             Verified Indian EV Templates (click to pre-fill)
           </p>
-          <div className="flex flex-wrap gap-[8px]">
+          <div className="flex flex-wrap gap-2">
             {catalog.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => applyTemplate(item)}
-                className="cw-btn-secondary py-[6px] px-[12px] text-[13px]"
+                className="cw-btn-secondary !py-1.5 !px-3.5 text-[13px]"
               >
                 {item.manufacturer} {item.model} ({item.battery_capacity_kwh} kWh)
               </button>
             ))}
           </div>
           {selectedNote && (
-            <p className="text-[13px] text-[#45474D] m-0 cw-card-muted p-[10px]">
+            <p className="text-[13px] text-[#334155] cw-card-muted p-3">
               Spec disclosure: {selectedNote}
             </p>
           )}
@@ -205,86 +206,86 @@ export function VehicleFormPage() {
 
       <form
         onSubmit={handleSubmit((vals) => saveMut.mutate(vals))}
-        className="cw-card p-[24px] space-y-[16px]"
+        className="cw-card p-6 sm:p-7 space-y-5"
         noValidate
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="nickname" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="nickname" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Vehicle nickname
             </label>
             <input id="nickname" className="cw-input" {...register("nickname")} />
             {errors.nickname && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">{errors.nickname.message}</p>
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">{errors.nickname.message}</p>
             )}
           </div>
           <div>
-            <label htmlFor="model_year" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="model_year" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Model year
             </label>
-            <input id="model_year" type="number" className="cw-input" {...register("model_year")} />
+            <input id="model_year" type="number" className="cw-input cw-num" {...register("model_year")} />
           </div>
           <div>
-            <label htmlFor="manufacturer" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="manufacturer" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Manufacturer
             </label>
             <input id="manufacturer" className="cw-input" {...register("manufacturer")} />
           </div>
           <div>
-            <label htmlFor="model" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="model" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Model
             </label>
             <input id="model" className="cw-input" {...register("model")} />
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="variant" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="variant" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Variant
             </label>
             <input id="variant" className="cw-input" {...register("variant")} />
           </div>
           <div>
-            <label htmlFor="battery_capacity_kwh" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="battery_capacity_kwh" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Total battery capacity (kWh)
             </label>
             <input
               id="battery_capacity_kwh"
               type="number"
               step="0.1"
-              className="cw-input"
+              className="cw-input cw-num"
               {...register("battery_capacity_kwh")}
             />
           </div>
           <div>
-            <label htmlFor="usable_battery_kwh" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="usable_battery_kwh" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Usable battery capacity (kWh)
             </label>
             <input
               id="usable_battery_kwh"
               type="number"
               step="0.1"
-              className="cw-input"
+              className="cw-input cw-num"
               {...register("usable_battery_kwh")}
             />
             {errors.usable_battery_kwh && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">
                 {errors.usable_battery_kwh.message}
               </p>
             )}
           </div>
           <div>
-            <label htmlFor="consumption_kwh_per_100km" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="consumption_kwh_per_100km" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Typical consumption (kWh / 100 km)
             </label>
             <input
               id="consumption_kwh_per_100km"
               type="number"
               step="0.1"
-              className="cw-input"
+              className="cw-input cw-num"
               {...register("consumption_kwh_per_100km")}
             />
           </div>
           <div>
-            <label htmlFor="specs_source" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="specs_source" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Specification source
             </label>
             <select id="specs_source" className="cw-input" {...register("specs_source")}>
@@ -294,39 +295,41 @@ export function VehicleFormPage() {
             </select>
           </div>
           <div>
-            <label htmlFor="max_dc_power_kw" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="max_dc_power_kw" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Max DC charging power (kW)
             </label>
             <input
               id="max_dc_power_kw"
               type="number"
               step="0.5"
-              className="cw-input"
+              className="cw-input cw-num"
               {...register("max_dc_power_kw")}
             />
             {errors.max_dc_power_kw && (
-              <p className="text-[13px] text-[#121317] mt-[4px] mb-0">
+              <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">
                 {errors.max_dc_power_kw.message}
               </p>
             )}
           </div>
           <div>
-            <label htmlFor="max_ac_power_kw" className="block text-[13px] font-medium mb-[6px]">
+            <label htmlFor="max_ac_power_kw" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
               Max AC charging power (kW)
             </label>
             <input
               id="max_ac_power_kw"
               type="number"
               step="0.1"
-              className="cw-input"
+              className="cw-input cw-num"
               {...register("max_ac_power_kw")}
             />
           </div>
         </div>
 
         <div>
-          <span className="block text-[13px] font-medium mb-[8px]">Supported connectors</span>
-          <div className="flex flex-wrap gap-[8px]">
+          <span className="block text-[13px] font-semibold text-[#1E293B] mb-2">
+            Supported connectors
+          </span>
+          <div className="flex flex-wrap gap-2">
             {CONNECTOR_OPTIONS.map((conn) => {
               const active = selectedConnectors.includes(conn);
               return (
@@ -335,7 +338,7 @@ export function VehicleFormPage() {
                   type="button"
                   aria-pressed={active}
                   onClick={() => toggleConnector(conn)}
-                  className={active ? "cw-btn-primary py-[6px] px-[12px]" : "cw-btn-secondary py-[6px] px-[12px]"}
+                  className={active ? "cw-btn-primary !py-1.5 !px-3.5" : "cw-btn-secondary !py-1.5 !px-3.5"}
                 >
                   {conn}
                 </button>
@@ -343,18 +346,18 @@ export function VehicleFormPage() {
             })}
           </div>
           {errors.connector_types && (
-            <p className="text-[13px] text-[#121317] mt-[4px] mb-0">
+            <p className="text-[12.5px] font-medium text-[#BE123C] mt-1">
               {errors.connector_types.message}
             </p>
           )}
         </div>
 
-        <label className="flex items-center gap-[8px] text-[14px] text-[#121317]">
-          <input type="checkbox" {...register("is_default")} />
+        <label className="flex items-center gap-2 text-[14px] text-[#334155]">
+          <input type="checkbox" className="accent-[#2563EB] w-4 h-4" {...register("is_default")} />
           <span>Set as default vehicle for trip planning</span>
         </label>
 
-        <div className="flex justify-end gap-[10px] pt-[8px]">
+        <div className="flex justify-end gap-2.5 pt-2">
           <Link to="/vehicles" className="cw-btn-secondary">
             Cancel
           </Link>

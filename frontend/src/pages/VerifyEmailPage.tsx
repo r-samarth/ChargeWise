@@ -28,11 +28,14 @@ export function VerifyEmailPage() {
   };
 
   return (
-    <div className="max-w-[520px] mx-auto px-[16px] py-[48px]">
-      <div className="cw-card p-[24px] sm:p-[36px] space-y-[20px]">
-        <h1 className="text-[28px] font-semibold text-[#121317] m-0">
-          Email verification
-        </h1>
+    <div className="max-w-[540px] mx-auto px-4 py-12 sm:py-16">
+      <div className="cw-card p-6 sm:p-8 space-y-5">
+        <div className="space-y-1">
+          <span className="cw-eyebrow">Security</span>
+          <h1 className="text-[28px] font-bold text-[#0F172A] leading-tight">
+            Email verification
+          </h1>
+        </div>
         {firebaseUser?.emailVerified ? (
           <StatusAlert
             title="Email verified"
@@ -44,16 +47,16 @@ export function VerifyEmailPage() {
             }
           />
         ) : (
-          <p className="text-[15px] text-[#45474D] m-0">
+          <p className="text-[15px] text-[#475569] leading-relaxed">
             We sent a verification link to{" "}
-            <strong className="text-[#121317]">{firebaseUser?.email || "your email"}</strong>.
+            <strong className="text-[#0F172A]">{firebaseUser?.email || "your email"}</strong>.
             You can already explore stations and plan routes, and verify anytime.
           </p>
         )}
 
         {notice && <StatusAlert title="Status" message={notice} />}
 
-        <div className="flex flex-wrap gap-[10px]">
+        <div className="flex flex-wrap gap-2.5 pt-1">
           <button type="button" onClick={handleCheck} disabled={busy} className="cw-btn-primary">
             I verified my email
           </button>

@@ -17,15 +17,15 @@ export function StationDetailsPage() {
 
   if (isLoading) {
     return (
-      <div className="max-w-[1120px] mx-auto px-[16px] py-[48px]">
-        <div className="cw-card p-[24px] text-[#45474D]">Loading station intelligence...</div>
+      <div className="max-w-[1120px] mx-auto px-4 py-12">
+        <div className="cw-card p-6 text-[#475569]">Loading station intelligence...</div>
       </div>
     );
   }
 
   if (error || !station) {
     return (
-      <div className="max-w-[900px] mx-auto px-[16px] py-[48px] space-y-[16px]">
+      <div className="max-w-[900px] mx-auto px-4 py-12 space-y-4">
         <StatusAlert
           title="Station not found"
           message={(error as Error)?.message || "Could not locate charging station."}
@@ -39,21 +39,23 @@ export function StationDetailsPage() {
   }
 
   return (
-    <div className="max-w-[1180px] mx-auto px-[16px] sm:px-[24px] py-[36px] space-y-[24px]">
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-[16px]">
-        <div className="space-y-[8px]">
-          <div className="flex flex-wrap items-center gap-[8px]">
+    <div className="max-w-[1180px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+        <div className="space-y-2">
+          <div className="flex flex-wrap items-center gap-2">
             <VerificationBadge status={station.verification_status} />
-            <span className="cw-pill">
+            <span className="cw-pill cw-pill-accent cw-num">
               Confidence {Math.round(station.confidence_score * 100)}% · {station.source_records_count} source record(s)
             </span>
-            {station.is_stale && <span className="cw-pill">Data refresh recommended</span>}
+            {station.is_stale && (
+              <span className="cw-pill cw-pill-warning">Data refresh recommended</span>
+            )}
           </div>
-          <h1 className="text-[28px] sm:text-[36px] font-semibold text-[#121317] m-0">
+          <h1 className="text-[28px] sm:text-[34px] font-bold text-[#0F172A] leading-tight">
             {station.name}
           </h1>
-          <p className="text-[15px] text-[#45474D] m-0">{station.address}</p>
-          <p className="text-[13px] text-[#6A6A71] m-0">
+          <p className="text-[15px] text-[#334155] leading-relaxed">{station.address}</p>
+          <p className="text-[13px] text-[#64748B] cw-num">
             Coordinates: {station.latitude.toFixed(5)}, {station.longitude.toFixed(5)} · Last verified:{" "}
             {station.last_verified_at
               ? new Date(station.last_verified_at).toLocaleDateString()
@@ -61,7 +63,7 @@ export function StationDetailsPage() {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-[10px]">
+        <div className="flex flex-wrap gap-2.5 shrink-0">
           {station.navigation_url && (
             <a
               href={station.navigation_url}
@@ -83,24 +85,22 @@ export function StationDetailsPage() {
         <StatusAlert title="Verification & Availability Disclosure" message={station.trust_note} />
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-[20px]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Connectors & Metadata */}
-        <div className="lg:col-span-7 space-y-[20px]">
-          <section className="cw-card p-[24px] space-y-[14px]">
-            <h2 className="text-[18px] font-semibold text-[#121317] m-0">
-              Charging Connectors
-            </h2>
-            <div className="space-y-[10px]">
+        <div className="lg:col-span-7 space-y-5">
+          <section className="cw-card p-6 space-y-4">
+            <h2 className="text-[18px] font-bold text-[#0F172A]">Charging Connectors</h2>
+            <div className="space-y-2.5">
               {station.connectors.map((c) => (
                 <div
                   key={c.id}
-                  className="cw-card-muted p-[14px] flex flex-col sm:flex-row sm:items-center justify-between gap-[10px]"
+                  className="cw-card-muted p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5"
                 >
-                  <div>
-                    <p className="text-[15px] font-semibold text-[#121317] m-0">
+                  <div className="space-y-0.5">
+                    <p className="text-[15px] font-semibold text-[#0F172A] cw-num">
                       {c.connector_type} ({c.current_type}) · {c.connector_count} port(s)
                     </p>
-                    <p className="text-[13px] text-[#45474D] m-0">
+                    <p className="text-[13px] text-[#475569] cw-num">
                       Rated Power: {c.power_kw ? `${c.power_kw} kW` : "Information unavailable"} · Operational:{" "}
                       {c.operational_status}
                     </p>
@@ -110,16 +110,16 @@ export function StationDetailsPage() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px] pt-[8px] text-[13px]">
-              <div>
-                <span className="text-[#6A6A71] block">Opening hours</span>
-                <strong className="text-[#121317]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-[13.5px]">
+              <div className="cw-card-muted p-3.5 space-y-0.5">
+                <span className="text-[#64748B] text-[12px] block">Opening hours</span>
+                <strong className="text-[#0F172A] font-semibold">
                   {station.opening_hours || "Information unavailable"}
                 </strong>
               </div>
-              <div>
-                <span className="text-[#6A6A71] block">Pricing</span>
-                <strong className="text-[#121317]">
+              <div className="cw-card-muted p-3.5 space-y-0.5">
+                <span className="text-[#64748B] text-[12px] block">Pricing</span>
+                <strong className="text-[#0F172A] font-semibold">
                   {station.pricing_verified && station.pricing_info
                     ? station.pricing_info
                     : "Unverified — check official operator app"}
@@ -129,31 +129,31 @@ export function StationDetailsPage() {
           </section>
 
           {/* Operator Integration */}
-          <section className="cw-card p-[24px] space-y-[12px]">
-            <h2 className="text-[18px] font-semibold text-[#121317] m-0">
+          <section className="cw-card p-6 space-y-3">
+            <h2 className="text-[18px] font-bold text-[#0F172A]">
               Operator Integration & Support
             </h2>
             {station.operator ? (
-              <div className="space-y-[10px] text-[14px]">
-                <p className="m-0 font-medium text-[#121317]">{station.operator.name}</p>
-                <p className="m-0 text-[#45474D]">
-                  <strong>Payments:</strong>{" "}
+              <div className="space-y-2.5 text-[14px]">
+                <p className="font-semibold text-[#0F172A]">{station.operator.name}</p>
+                <p className="text-[#334155]">
+                  <strong className="text-[#0F172A]">Payments:</strong>{" "}
                   {station.operator.payment_information || "Check operator app"}
                 </p>
-                <p className="m-0 text-[#45474D]">
-                  <strong>Reservations:</strong> {station.operator.reservation_support} ·{" "}
-                  {station.operator.api_or_ocpi_information}
+                <p className="text-[#334155]">
+                  <strong className="text-[#0F172A]">Reservations:</strong>{" "}
+                  {station.operator.reservation_support} · {station.operator.api_or_ocpi_information}
                 </p>
-                <p className="m-0 text-[13px] text-[#6A6A71]">
+                <p className="text-[13px] text-[#64748B]">
                   ChargeWise does not process payments or reservations directly. Use the official links below and search for “{station.name}”.
                 </p>
-                <div className="flex flex-wrap gap-[8px] pt-[6px]">
+                <div className="flex flex-wrap gap-2 pt-1.5">
                   {station.operator.official_website && (
                     <a
                       href={station.operator.official_website}
                       target="_blank"
                       rel="noreferrer"
-                      className="cw-btn-secondary py-[6px] px-[12px]"
+                      className="cw-btn-secondary !py-1.5 !px-3.5"
                     >
                       <ExternalLink size={14} aria-hidden="true" />
                       <span>Website</span>
@@ -164,7 +164,7 @@ export function StationDetailsPage() {
                       href={station.operator.android_app_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="cw-btn-secondary py-[6px] px-[12px]"
+                      className="cw-btn-secondary !py-1.5 !px-3.5"
                     >
                       <ExternalLink size={14} aria-hidden="true" />
                       <span>Android App</span>
@@ -175,7 +175,7 @@ export function StationDetailsPage() {
                       href={station.operator.ios_app_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="cw-btn-secondary py-[6px] px-[12px]"
+                      className="cw-btn-secondary !py-1.5 !px-3.5"
                     >
                       <ExternalLink size={14} aria-hidden="true" />
                       <span>iOS App</span>
@@ -184,7 +184,7 @@ export function StationDetailsPage() {
                   {station.operator.support_phone && (
                     <a
                       href={`tel:${station.operator.support_phone}`}
-                      className="cw-btn-secondary py-[6px] px-[12px]"
+                      className="cw-btn-secondary !py-1.5 !px-3.5 cw-num"
                     >
                       <Phone size={14} aria-hidden="true" />
                       <span>{station.operator.support_phone}</span>
@@ -193,7 +193,7 @@ export function StationDetailsPage() {
                 </div>
               </div>
             ) : (
-              <p className="text-[14px] text-[#45474D] m-0">
+              <p className="text-[14px] text-[#475569]">
                 Operator details unavailable. Source: {station.source}.
               </p>
             )}
@@ -201,36 +201,34 @@ export function StationDetailsPage() {
         </div>
 
         {/* Map & Nearby Amenities */}
-        <div className="lg:col-span-5 space-y-[20px]">
-          <div className="cw-card p-[14px]">
+        <div className="lg:col-span-5 space-y-5">
+          <div className="cw-card p-3.5">
             <StationMap
               stations={[station]}
               center={[station.latitude, station.longitude]}
               zoom={13}
-              height="260px"
+              height="270px"
             />
           </div>
 
-          <section className="cw-card p-[24px] space-y-[12px]">
-            <h2 className="text-[18px] font-semibold text-[#121317] m-0">
-              Nearby Family Amenities
-            </h2>
+          <section className="cw-card p-6 space-y-3">
+            <h2 className="text-[18px] font-bold text-[#0F172A]">Nearby Family Amenities</h2>
             {station.nearby_amenities.length === 0 ? (
-              <p className="text-[14px] text-[#6A6A71] m-0">
+              <p className="text-[14px] text-[#64748B]">
                 Information unavailable for verified amenities within 5 km.
               </p>
             ) : (
-              <div className="space-y-[10px]">
+              <div className="space-y-2.5">
                 {station.nearby_amenities.map((am) => (
-                  <div key={am.id} className="cw-card-muted p-[12px] text-[13px] space-y-[4px]">
-                    <div className="flex items-center justify-between gap-[6px]">
-                      <strong className="text-[#121317]">{am.name}</strong>
-                      <span className="cw-pill">{am.category}</span>
+                  <div key={am.id} className="cw-card-muted p-3.5 text-[13px] space-y-1.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <strong className="text-[#0F172A] font-semibold">{am.name}</strong>
+                      <span className="cw-pill cw-pill-accent">{am.category}</span>
                     </div>
-                    <p className="text-[#45474D] m-0">
+                    <p className="text-[#475569] cw-num">
                       {am.distance_km} km away · Hours: {am.opening_hours || "Information unavailable"}
                     </p>
-                    <p className="text-[#6A6A71] m-0">
+                    <p className="text-[#64748B] cw-num">
                       Rating: {am.rating !== null ? `${am.rating} / 5` : "Information unavailable"}
                     </p>
                     {am.navigation_url && (
@@ -238,7 +236,7 @@ export function StationDetailsPage() {
                         href={am.navigation_url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-[4px] text-[#121317] underline"
+                        className="inline-flex items-center gap-1.5 font-medium text-[#1D4ED8] hover:underline"
                       >
                         <MapPin size={12} aria-hidden="true" />
                         <span>Navigate to amenity</span>
