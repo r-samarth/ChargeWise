@@ -1,0 +1,128 @@
+{
+  "Mall of Mysore": [
+    {
+      "name": "Mayura Rhino Canteen",
+      "lat": 12.2985799,
+      "lon": 76.6682884,
+      "type": "restaurant",
+      "class": "amenity",
+      "display": "Mayura Rhino Canteen, Kozhikode - Kollegal Highway, Race Course, Mysuru, Mysuru taluk, Mysuru District, Karnataka, 570001, India"
+    },
+    {
+      "name": "Kamath Madhuvan",
+      "lat": 12.2941487,
+      "lon": 76.6589281,
+      "type": "restaurant",
+      "class": "amenity",
+      "display": "Kamath Madhuvan, Kozhikode - Kollegal Highway, Race Course, Mysuru, Mysuru taluk, Mysuru District, Karnataka, 570001, India"
+    }
+  ],
+  "Mysuru Hospital": [],
+  "Bannikuppe Cafe": [],
+  "Hunsur Hospital": [],
+  "Kushalnagar Hotel": [
+    {
+      "name": "HOMESTAY COORG PULICKAL",
+      "lat": 12.4668658,
+      "lon": 75.9570744,
+      "type": "hotel",
+      "class": "tourism",
+      "display": "HOMESTAY COORG PULICKAL, SH91, Baichanahalli, Mullusoge, Kushalanagar taluku, Kodagu, Karnataka, 571234, India"
+    },
+    {
+      "name": "Hotel Maharaja",
+      "lat": 12.4508591,
+      "lon": 75.968291,
+      "type": "hotel",
+      "class": "tourism",
+      "display": "Hotel Maharaja, NH275, Baichanahalli, Kushalanagar, Kushalanagar taluku, Kodagu, Karnataka, 571234, India"
+    }
+  ],
+  "Kushalnagar Hospital": [],
+  "Madikeri Cafe": [
+    {
+      "name": "Beans n Brew",
+      "lat": 12.4191113,
+      "lon": 75.7388756,
+      "type": "cafe",
+      "class": "amenity",
+      "display": "Beans n Brew, Internal Road, Madikeri, Madikeri taluku, Kodagu, Karnataka, 571201, India"
+    },
+    {
+      "name": "Ainmane Cafe",
+      "lat": 12.4243023,
+      "lon": 75.7372919,
+      "type": "cafe",
+      "class": "amenity",
+      "display": "Ainmane Cafe, College Road, Madikeri, Madikeri taluku, Kodagu, Karnataka, 571201, India"
+    }
+  ],
+  "Madikeri Hospital": [
+    {
+      "name": "Kodagu Institute of Medical Sciences",
+      "lat": 12.4419015,
+      "lon": 75.7403685,
+      "type": "college",
+      "class": "amenity",
+      "display": "Kodagu Institute of Medical Sciences, SH27, Madikeri, Madikeri taluku, Kodagu, Karnataka, 571201, India"
+    }
+  ],
+  "Puttur Restaurant": [
+    {
+      "name": "Sujatha Family Restaurant",
+      "lat": 12.7605546,
+      "lon": 75.2066614,
+      "type": "restaurant",
+      "class": "amenity",
+      "display": "Sujatha Family Restaurant, Main Road, \u0cac\u0ca8\u0ccd\u0ca8\u0cc2\u0cb0\u0cc1, Puttur, Putturu taluk, Dakshina Kannada, Karnataka, 574201, India"
+    },
+    {
+      "name": "Hariprasad New",
+      "lat": 12.7678162,
+      "lon": 75.1952886,
+      "type": "restaurant",
+      "class": "amenity",
+      "display": "Hariprasad New, Main Road, \u0cac\u0ca8\u0ccd\u0ca8\u0cc2\u0cb0\u0cc1, Puttur, Putturu taluk, Dakshina Kannada, Karnataka, 574201, India"
+    }
+  ],
+  "Puttur Hospital": [
+    {
+      "name": "Adarsha Hospital, Puttur",
+      "lat": 12.7651044,
+      "lon": 75.2079399,
+      "type": "hospital",
+      "class": "amenity",
+      "display": "Adarsha Hospital, Puttur, Main Road, \u0cac\u0ca8\u0ccd\u0ca8\u0cc2\u0cb0\u0cc1, Puttur, Putturu taluk, Dakshina Kannada, Karnataka, 574201, India"
+    }
+  ],
+  "Mangaluru City Centre": [
+    {
+      "name": "City Centre Mall",
+      "lat": 12.8712523,
+      "lon": 74.8428252,
+      "type": "mall",
+      "class": "shop",
+      "display": "City Centre Mall, Karnad Sadashiva Rao Road, Dongerkeri, Attavar, Mangaluru, Mangaluru taluk, Dakshina Kannada, Karnataka, 575001, India"
+    },
+    {
+      "name": "Reliance Timeout",
+      "lat": 12.8713465,
+      "lon": 74.8429504,
+      "type": "books",
+      "class": "shop",
+      "display": "Reliance Timeout, Karnad Sadashiva Rao Road, Dongerkeri, Attavar, Mangaluru, Mangaluru taluk, Dakshina Kannada, Karnataka, 575001, India"
+    }
+  ],
+  "Mangaluru Hospital": [],
+  "Hassan Highway": [],
+  "Hassan Hospital": [
+    {
+      "name": "Hassan Institute of Medical Sciences",
+      "lat": 13.0047415,
+      "lon": 76.1023717,
+      "type": "college",
+      "class": "amenity",
+      "display": "Hassan Institute of Medical Sciences, Racecourse Road, Shareef Colony, Ameer Mohalla, Hassan, Hasana taluk, Hassan, Karnataka, 573201, India"
+    }
+  ]
+}

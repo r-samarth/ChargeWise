@@ -1,0 +1,119 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Deny all reads and writes by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isOwner(firebaseUid) {
+      return isSignedIn() && request.auth.uid == firebaseUid;
+    }
+
+    function validNotificationSettings(ns) {
+      return ns is map
+        && ns.keys().hasOnly(['tripReminders', 'dataAlerts', 'emailDigest'])
+        && (!('tripReminders' in ns) || ns.tripReminders is bool)
+        && (!('dataAlerts' in ns) || ns.dataAlerts is bool)
+        && (!('emailDigest' in ns) || ns.emailDigest is bool);
+    }
+
+    function validUserDoc(firebaseUid) {
+      let data = request.resource.data;
+      return data.keys().hasOnly([
+          'firebaseUid',
+          'displayName',
+          'email',
+          'photoURL',
+          'notificationSettings',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.firebaseUid is string
+        && data.firebaseUid == firebaseUid
+        && data.displayName is string
+        && data.displayName.size() <= 120
+        && data.email is string
+        && data.email.size() <= 255
+        && (!('photoURL' in data) || data.photoURL == null || data.photoURL is string)
+        && (!('notificationSettings' in data) || validNotificationSettings(data.notificationSettings))
+        && !('role' in data)
+        && !('isAdmin' in data);
+    }
+
+    function validRouteSettings(rs) {
+      return rs is map
+        && rs.keys().hasOnly([
+          'reserveSocPct',
+          'preferFastChargers',
+          'maxDetourKm',
+          'preferredAmenities'
+        ])
+        && (!('reserveSocPct' in rs) || (rs.reserveSocPct is number && rs.reserveSocPct >= 5 && rs.reserveSocPct <= 50))
+        && (!('preferFastChargers' in rs) || rs.preferFastChargers is bool)
+        && (!('maxDetourKm' in rs) || (rs.maxDetourKm is number && rs.maxDetourKm >= 1 && rs.maxDetourKm <= 50))
+        && (!('preferredAmenities' in rs) || (rs.preferredAmenities is list && rs.preferredAmenities.size() <= 10));
+    }
+
+    function validPreferencesDoc() {
+      let data = request.resource.data;
+      return data.keys().hasOnly([
+          'preferredUnits',
+          'preferredMapStyle',
+          'preferredRouteSettings',
+          'preferredNotificationSettings',
+          'updatedAt'
+        ])
+        && (!('preferredUnits' in data) || data.preferredUnits in ['metric', 'imperial'])
+        && (!('preferredMapStyle' in data) || data.preferredMapStyle in ['standard', 'terrain'])
+        && (!('preferredRouteSettings' in data) || validRouteSettings(data.preferredRouteSettings))
+        && (!('preferredNotificationSettings' in data) || validNotificationSettings(data.preferredNotificationSettings))
+        && (!('updatedAt' in data) || data.updatedAt is timestamp);
+    }
+
+    match /users/{firebaseUid} {
+      allow read: if isOwner(firebaseUid);
+      allow create: if isOwner(firebaseUid) && validUserDoc(firebaseUid);
+      allow update: if isOwner(firebaseUid)
+        && validUserDoc(firebaseUid)
+        && request.resource.data.firebaseUid == resource.data.firebaseUid
+        && (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt);
+      allow delete: if false;
+
+      match /settings/{settingId} {
+        allow read: if isOwner(firebaseUid) && settingId == 'preferences';
+        allow create, update: if isOwner(firebaseUid)
+          && settingId == 'preferences'
+          && validPreferencesDoc();
+        allow delete: if false;
+      }
+
+      match /notifications/{notificationId} {
+        allow read: if isOwner(firebaseUid);
+        allow create, delete: if false;
+        allow update: if isOwner(firebaseUid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read'])
+          && request.resource.data.read is bool;
+      }
+
+      match /activity/{activityId} {
+        allow read: if isOwner(firebaseUid);
+        allow write: if false;
+      }
+
+      match /tripUpdates/{tripId} {
+        allow read: if isOwner(firebaseUid);
+        allow write: if false;
+      }
+    }
+
+    match /admin/{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "Mysuru_Center": {
+    "lat": 12.3041464,
+    "lon": 76.6529521,
+    "display_name": "Mysuru, Mysuru taluk, Mysuru District, Karnataka, 570001, India"
+  },
+  "Mangaluru_Center": {
+    "lat": 12.8698247,
+    "lon": 74.8430125,
+    "display_name": "Mangaluru, Mangaluru taluk, Dakshina Kannada, Karnataka, 575001, India"
+  },
+  "Hunsur": {
+    "lat": 12.3035086,
+    "lon": 76.2928095,
+    "display_name": "Hunsur, Hunasuru taluk, Mysuru District, Karnataka, 571105, India"
+  },
+  "Kushalnagar": {
+    "lat": 12.4585525,
+    "lon": 75.961437,
+    "display_name": "Kushalanagar, Kushalanagar taluku, Kodagu, Karnataka, 571234, India"
+  },
+  "Madikeri": {
+    "lat": 12.42149,
+    "lon": 75.7387543,
+    "display_name": "Madikeri, Madikeri taluku, Kodagu, Karnataka, 571201, India"
+  },
+  "Sullia": {
+    "lat": 12.5576644,
+    "lon": 75.3907575,
+    "display_name": "Sulya, Sulya taluk, Dakshina Kannada, Karnataka, 574239, India"
+  },
+  "Puttur": {
+    "lat": 12.7632858,
+    "lon": 75.2018421,
+    "display_name": "Puttur, Putturu taluk, Dakshina Kannada, Karnataka, 574201, India"
+  },
+  "Hassan": {
+    "lat": 13.0301852,
+    "lon": 76.1744968,
+    "display_name": "Hassan, Karnataka, India"
+  },
+  "Sakleshpur": {
+    "lat": 12.9434349,
+    "lon": 75.7862318,
+    "display_name": "Sakaleshpura, Sakaleshapura taluk, Hassan, Karnataka, 573134, India"
+  },
+  "Channarayapatna": {
+    "lat": 12.8924577,
+    "lon": 76.3938858,
+    "display_name": "Channarayapatna, SH8, Guramaranahalli, Channarayapattana taluk, Hassan, Karnataka, 573116, India"
+  },
+  "Bengaluru": {
+    "lat": 12.9767936,
+    "lon": 77.590082,
+    "display_name": "Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, India"
+  },
+  "Tumakuru": {
+    "lat": 13.4192512,
+    "lon": 76.8810004,
+    "display_name": "Tumakuru, Karnataka, India"
+  },
+  "Udupi": {
+    "lat": 13.5269784,
+    "lon": 74.8731879,
+    "display_name": "Udupi, Karnataka, India"
+  },
+  "Shivamogga": {
+    "lat": 13.9326093,
+    "lon": 75.574978,
+    "display_name": "Shivamogga, Shivamogga taluk, Shimoga, Karnataka, 577201, India"
+  },
+  "Hubballi": {
+    "lat": 15.3518378,
+    "lon": 75.1379848,
+    "display_name": "Hubballi, Hubballi Urban Taluku, Dharwad, Karnataka, 580020, India"
+  },
+  "Belagavi": {
+    "lat": 16.1587846,
+    "lon": 74.888862,
+    "display_name": "Belagavi, Karnataka, India"
+  }
+}

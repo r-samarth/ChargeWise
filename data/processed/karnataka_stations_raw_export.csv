@@ -1,0 +1,87 @@
+station_id,name,operator,city,district,state,latitude,longitude,charging_type,opening_hours,pricing_verified,verification_status,confidence_score,source,connector_types,max_power_kw,total_connectors
+7ea5c4f9-764d-448c-beb0-db41a7a48a4a,Zeon Charging — Mall of Mysore,Zeon Charging,Mysuru,Mysuru,Karnataka,12.297844,76.664631,DC_FAST,24/7,False,operational_status_verified,0.94,Zeon Official Locator & Wikipedia Geo,CCS2|TYPE_2,120.0,3
+302addec-cf01-4f99-9368-00d52de69306,Zeon Charging — Southern Star Mysuru,Zeon Charging,Mysuru,Mysuru,Karnataka,12.3086,76.6531,DC_FAST,24/7,False,operational_status_verified,0.91,Zeon Official Locator & OSM,CCS2,60.0,2
+92a58408-17a6-4502-aa51-73759e7affc7,Tata Power EZ Charge — Radisson Blu Plaza Mysuru,Tata Power EZ Charge,Mysuru,Mysuru,Karnataka,12.2995,76.6661,AC,24/7,False,location_verified,0.84,Tata Power / Partner Hospitality Disclosure,TYPE_2,7.4,2
+dbf56659-7636-4d41-b2f2-0f98e5c5c1ee,"Tata Power EZ Charge — Sri Krishna Cafe, Bannikuppe",Tata Power EZ Charge,Hunsur,Mysuru,Karnataka,12.3115,76.282,DC_FAST,,False,operational_status_verified,0.9,Tata Power EZ Charge Highway Corridor Disclosure,CCS2,60.0,2
+f9b218bb-b1c3-400e-9ebe-7c0d7e2c72d6,"Zeon Charging — Tata Motors Urs Kar, Kushalnagar",Zeon Charging,Kushalnagar,Kodagu,Karnataka,12.458,75.959,DC_FAST,24/7,False,operational_status_verified,0.92,Zeon Official Locator,CCS2,60.0,2
+83eadb68-1a4c-44db-b510-cf344e50ee6b,"Zeon Charging — Purple Palms Resort & Spa, Kushalnagar",Zeon Charging,Kushalnagar,Kodagu,Karnataka,12.4495,75.968,DC_FAST,,False,operational_status_verified,0.89,Zeon Official Locator,CCS2,30.0,1
+c5e241b9-41a1-43e3-940e-86504639844a,Tata Power EZ Charge — Taj Madikeri Resort & Spa,Tata Power EZ Charge,Madikeri,Kodagu,Karnataka,12.4244,75.7382,DC_FAST,,False,operational_status_verified,0.88,Tata Power EZ Charge Locator,CCS2,30.0,1
+4006bad2-0a89-487c-9233-87498e367375,Zeon Charging — Club Mahindra Madikeri,Zeon Charging,Madikeri,Kodagu,Karnataka,12.4413,75.7164,AC,,False,location_verified,0.85,Zeon Official Locator,TYPE_2,22.0,2
+b9318d4c-f2d9-47ba-bb94-17c943adb2be,"Zeon Charging — Mahaveer Ventures, Puttur",Zeon Charging,Puttur,Dakshina Kannada,Karnataka,12.763286,75.201842,MIXED,,False,operational_status_verified,0.9,Zeon Official Locator & Nominatim,CCS2|TYPE_2,90.0,3
+298ae94e-cd85-4c61-a19a-439bdab02a09,"Zeon Charging — City Centre Mall, Mangaluru",Zeon Charging,Mangaluru,Dakshina Kannada,Karnataka,12.871421,74.842504,DC_FAST,,False,operational_status_verified,0.94,Zeon Official Locator & Wikipedia Geo,CCS2,60.0,2
+2a40ff9b-53d5-42b2-bd61-7a3f8489473a,"Statiq & Jio-bp Hub — Fiza by Nexus Mall, Mangaluru",Statiq,Mangaluru,Dakshina Kannada,Karnataka,12.85774,74.83831,MIXED,,False,operational_status_verified,0.93,Statiq / Nexus Mall Disclosure,CCS2|TYPE_2,60.0,4
+70f1a0f9-338e-4248-af95-97883eca4412,"Tata Power EZ Charge — Cauvery Motors, Padil",Tata Power EZ Charge,Mangaluru,Dakshina Kannada,Karnataka,12.8742,74.8895,DC_FAST,,False,operational_status_verified,0.87,Tata Power EZ Charge Dealership Network,CCS2,25.0,1
+30a1f60c-789a-4829-a059-73f141462bda,"Statiq x TATA.ev — Hotel Shivsurya, Hassan NH-75",Statiq,Hassan,Hassan,Karnataka,12.875,75.832,DC_FAST,,False,operational_status_verified,0.89,Statiq NH-75 Corridor Disclosure,CCS2,60.0,2
+4543d40b-520f-4abe-8028-c519e79209a6,"Statiq — Gajanan BPCL Bypass, Hassan",Statiq,Hassan,Hassan,Karnataka,13.0068,76.112,DC_FAST,,False,operational_status_verified,0.88,Statiq Official Locator,CCS2,60.0,2
+73b6a46e-868b-4ebc-852f-4f081bba0b45,Statiq — BP Channarayapatna Highway Hub,Statiq,Channarayapatna,Hassan,Karnataka,12.892458,76.393886,DC_FAST,,False,location_verified,0.83,Statiq Official Locator,CCS2,60.0,1
+243ba537-2cad-4f26-b7f7-2f48ce84fab1,KPTCL Station,KPTCL,Vijayapura / Kalaburagi Region,North Karnataka,Karnataka,16.8129246,75.7157248,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+e578afca-98bd-404c-b7f2-aabe9c393063,OSM Charging Point #6128146875,,Vijayapura / Kalaburagi Region,North Karnataka,Karnataka,16.8075405,77.1444785,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+ab3b9153-0faf-4aa0-8389-8a22e8d8f8c8,OSM Charging Point #6128170285,,Vijayapura / Kalaburagi Region,North Karnataka,Karnataka,16.8860925,76.9843397,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+c014ef05-7ccb-4b39-b199-77695506ca52,Ather Charging Grid,Ather Grid,Bengaluru,Bengaluru Urban,Karnataka,12.975668,77.6413089,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),ATHER_PROPRIETARY,3.0,1
+bfd8eefb-52aa-4bb8-ac5c-7f8af004f803,OSM Charging Point #9527967749,,Bengaluru,Bengaluru Urban,Karnataka,13.0415766,77.6204588,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+4f5471e3-a5f1-4d73-99ae-e4f3a42d9d39,BESCOM Station,BESCOM EV Mithra,Bengaluru,Bengaluru Urban,Karnataka,12.9947371,77.6993007,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+aed78359-bfb8-4240-907a-e56759183d01,OSM Charging Point #9811396097,,Bengaluru,Bengaluru Urban,Karnataka,12.9775829,77.6389895,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+a059527e-d0a9-49d5-aafe-06e743187ffc,OSM Charging Point #9917415768,,Bengaluru,Bengaluru Urban,Karnataka,12.9733967,77.6357561,SWAP_OR_2W,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+356bd97c-7258-48b7-9a85-108feda9c35b,OSM Charging Point #9917415769,,Bengaluru,Bengaluru Urban,Karnataka,12.9733738,77.6357554,SWAP_OR_2W,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+2173f8fa-4eab-4360-9901-0c17799c0e55,OSM Charging Point #10177662896,,Bengaluru,Bengaluru Urban,Karnataka,12.9137732,77.6441735,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+0b7607e0-f7d9-4012-a9dd-fc8d74d6f950,OSM Charging Point #10178076779,,Bengaluru,Bengaluru Urban,Karnataka,13.1973512,77.7076171,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+aad30358-6413-4873-b674-44738d174dc2,inGO,,Bengaluru,Bengaluru Urban,Karnataka,12.9712776,77.6078832,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+40be940a-f21b-42fd-947e-80666f7ee6f9,Yulu Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9764825,77.6268299,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+59c694e8-c15f-45d9-a79d-da1ce86bc061,Magenta ChargeGrid Charging Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9154635,77.6158909,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+147e767f-6ecb-490e-af54-674b5dc7cf67,Ather Station,Ather Grid,Bengaluru,Bengaluru Urban,Karnataka,12.9576825,77.5684466,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),ATHER_PROPRIETARY,3.0,1
+bcb98d4c-0599-4148-bfa1-5e53d7cbb81c,Pulse,,Bengaluru,Bengaluru Urban,Karnataka,12.9805484,77.5978893,SWAP_OR_2W,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+7ca609a9-c253-44c7-96ca-0b0317ed1958,Ola Hypercharger,,Bengaluru,Bengaluru Urban,Karnataka,12.9322172,77.6142725,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+d4ec6da6-8904-484f-8369-e48cf61c20fd,BESCOM Station,BESCOM EV Mithra,Bengaluru,Bengaluru Urban,Karnataka,12.916907,77.6102709,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+91f7d867-60dc-4e2d-be89-485c13fca115,Hero Vida Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9710109,77.597788,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+1603d02e-3ca2-432f-8656-090b2d9eac94,OSM Charging Point #11408768738,,Bengaluru,Bengaluru Urban,Karnataka,12.9736666,77.5830855,SWAP_OR_2W,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+7f198b69-30d3-448a-b456-56afe957c9d3,Honda e:swap Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9302614,77.614821,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+bc464fe5-3bb7-40a9-9baf-c8441916556f,OSM Charging Point #11542817290,,Bengaluru,Bengaluru Urban,Karnataka,12.9362684,77.6076884,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+2f730aa8-fb1c-484f-9d29-1329a6195213,GLIDA Charging Station,,Bengaluru,Bengaluru Urban,Karnataka,13.1831411,77.6760596,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+645f2d2a-0bd6-4534-bf4b-7380d05297b0,BluSmart Charging Station,,Bengaluru,Bengaluru Urban,Karnataka,13.1821565,77.6710546,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+d17f6504-dc86-4aca-bbd7-826d61c302c6,Gogate Plaza,Tata Power EZ Charge,Belagavi,Belagavi,Karnataka,15.9287213,74.5291412,DC_FAST,,True,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+4cc00b19-9cfd-4229-a46a-0e4cf898b99a,Tata Power TSS Sirsi,Tata Power EZ Charge,Karnataka,Karnataka,Karnataka,14.6243646,74.8415578,DC_FAST,,True,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+bc274fc9-ca92-458b-a810-822fe5c59b51,Ola Hyper Charger,,Bengaluru,Bengaluru Urban,Karnataka,12.9337755,77.6236693,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+33715010-cb0a-4e2b-a9ee-5a694d3230fd,Battery Swap,,Bengaluru,Bengaluru Urban,Karnataka,12.9285835,77.6241904,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+e5c1ccc2-9e66-4628-9955-dd088c85b489,Ather Charging Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9311453,77.6238461,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+4fd634f7-5f83-40f5-a372-c5c7586b37f7,BluSmart Charging Station,,Bengaluru,Bengaluru Urban,Karnataka,13.1776646,77.6630831,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+3f6bf537-ce52-429f-9c3b-4d2ceedc8da2,OSM Charging Point #12002046035,,Bengaluru,Bengaluru Urban,Karnataka,12.977855,77.5812757,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+01fb59c5-cc62-4f39-bb9f-5175f9f91075,OSM Charging Point #12016136802,,Bengaluru,Bengaluru Urban,Karnataka,13.027001,77.5425776,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+fd43b8ea-03b4-49c3-a800-c49ff882b078,OSM Charging Point #12078138004,,Bengaluru,Bengaluru Urban,Karnataka,12.9810756,77.5966804,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+42dc5c32-4c5e-45bf-9041-4f613e259961,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,13.0000143,77.5499059,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+ff677846-8413-4ea1-94b9-6b6f1169ca3d,Ola Hypercharger Station,,Bengaluru,Bengaluru Urban,Karnataka,12.965406,77.6002473,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+815aead1-5b5d-44e7-83e0-643692b4ad20,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,12.9781045,77.6389105,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+68a0a36b-e55e-47c3-aa22-92fbfd702afc,Battery Swapping Station,,Bengaluru,Bengaluru Urban,Karnataka,12.8894274,77.5563647,DC_FAST,24/7,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+2cf45418-aa99-4498-ba1a-086d0422e409,Shell Station,Shell Recharge,Bengaluru,Bengaluru Urban,Karnataka,13.1543775,77.702793,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+db7ddc75-387b-4785-9935-37858dc798bb,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,12.9383537,77.5802162,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+660d1fe9-c5b8-4ed9-aaa7-f7ddb63f6d3e,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,12.9217078,77.5805052,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+01ee7527-8306-4333-adab-290be1d10d50,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,13.0330528,77.533757,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+6026b917-806d-4c5f-bee0-3336e7b8aa21,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,12.993427,77.7043141,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+bdca20a1-14b6-4486-8456-618dd248d821,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,12.993427,77.7043141,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+38127d7e-190c-4d1c-bf3b-5aa7e6f82e2b,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,12.9861844,77.6156891,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+a38b370f-84df-475a-bd21-6b292770efcb,OSM Charging Point #12968864355,,Bengaluru,Bengaluru Urban,Karnataka,13.020096,77.6929133,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+876ec8d3-8467-4ae9-84c1-fa6ad08970f0,êpump Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9421168,77.7471967,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+84427aef-ab23-45ce-a55c-f1c6e3fe7f81,OSM Charging Point #13198115513,,Bengaluru,Bengaluru Urban,Karnataka,13.1778318,77.6637027,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+248384cf-5a39-47f2-8445-00942fab0bf1,Glida Station,Glida (formerly Fortum India),Channarayapatna / Hassan Corridor,Hassan,Karnataka,12.9662557,76.7885149,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+5826e0dd-9d6e-4d88-af35-c40d86c7703f,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,13.0235213,77.5497316,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+1d4cb74b-1f65-4370-a36e-b697bac7ddb0,Honda e:swap,,Bengaluru,Bengaluru Urban,Karnataka,13.0235317,77.5497115,SWAP_OR_2W,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+ae4d6e0c-ae93-447e-b19b-b9fc2def6e19,OSM Charging Point #13289292621,,Bengaluru,Bengaluru Urban,Karnataka,13.1824621,77.6738012,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+6e11d860-269a-42be-bbec-4eda91b2f7f4,OSM Charging Point #13289292622,,Bengaluru,Bengaluru Urban,Karnataka,13.1842301,77.6808688,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+e16fc1cd-9e7d-4dd3-b7ed-0844f2197970,Sun Mobility Station,,Bengaluru,Bengaluru Urban,Karnataka,13.0001758,77.6869647,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+3370e4fa-01e1-4794-b78b-28414aec9193,OSM Charging Point #13625197611,,Karnataka,Karnataka,Karnataka,12.765215,77.3303554,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+26d32724-6f67-4ada-a866-4b823d3fdc41,Magenta Station,,Karnataka,Karnataka,Karnataka,17.2296337,74.4013203,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+613ec75c-beca-44c2-bc45-8b4d4d243415,Uplug Station,,Karnataka,Karnataka,Karnataka,16.9460013,74.4053945,DC_FAST,,True,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+f337ba00-1d71-467a-8841-9b3a5a93e0dc,OSM Charging Point #13805934247,,Karnataka,Karnataka,Karnataka,16.9460728,74.4053213,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+d73f33a8-365e-42fc-a973-d10157e41d7f,Jio BP Pulse,,Vijayapura / Kalaburagi Region,North Karnataka,Karnataka,16.9357078,75.7391642,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+27339c40-1476-44a7-aa60-b1c56c13c1bd,Adani Station,,Karnataka,Karnataka,Karnataka,17.595456,76.0655753,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+233b8e4a-33b8-4514-99ea-066d5c41427c,OSM Charging Point #14107361746,,Karnataka,Karnataka,Karnataka,15.283211,76.3868679,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+180d52cb-a596-4f1f-bfa4-31c900532a8b,OSM Charging Point #14114661618,,Karnataka,Karnataka,Karnataka,15.3626357,75.2130756,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+4b397653-c4b9-477a-9eb1-05196404c717,Ather Fast Charger,,Bengaluru,Bengaluru Urban,Karnataka,12.8316517,77.703681,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+e78bb3eb-d546-415d-b637-3236dc03bf16,Shell Station,Shell Recharge,Bengaluru,Bengaluru Urban,Karnataka,12.9725414,77.7078105,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+8023ae49-074d-4184-a760-7c66402bfb4c,Jio BP Station,Jio-bp pulse,Bengaluru,Bengaluru Urban,Karnataka,12.9517505,77.7024581,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+2eaeb94c-f501-4aca-a719-586635637356,Jio BP,,Bengaluru,Bengaluru Urban,Karnataka,13.0878799,77.6601841,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+e5568b1d-2533-41a2-9ca9-520bc1d0d0bc,Urja Charging Station,,Mangaluru,Dakshina Kannada,Karnataka,13.0089749,74.7937015,DC_FAST,,False,listed,0.45,OpenStreetMap (Overpass),UNKNOWN,,1
+3d9ab020-b7e1-4a47-971e-68ea0bde6939,BESCOM Station,BESCOM EV Mithra,Bengaluru,Bengaluru Urban,Karnataka,13.1831753,77.6792437,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+9d790f5b-9731-4453-9989-9c16d65f3efb,Bolt Earth Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9284786,77.7459842,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+6325a1a7-ffbf-45fc-bf69-8e53b0900b11,Bolt Earth Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9301172,77.7442461,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+9428cc80-1cfe-487c-90b2-621c5705e0ef,Bolt Earth Station,,Bengaluru,Bengaluru Urban,Karnataka,12.9321299,77.7463558,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
+faeb49df-82ad-4bce-9bda-faf055778e7b,Uplug Station,,Karnataka,Karnataka,Karnataka,16.9459866,74.4053918,DC_FAST,,False,listed,0.62,OpenStreetMap (Overpass),UNKNOWN,,1
