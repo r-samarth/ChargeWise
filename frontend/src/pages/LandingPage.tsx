@@ -8,7 +8,7 @@ import type { StationList } from "../types/api";
 export function LandingPage() {
   const { data: stationData } = useQuery({
     queryKey: ["landing-stations"],
-    queryFn: () => apiRequest<StationList>("/stations?page_size=30"),
+    queryFn: () => apiRequest<StationList>("/stations?page_size=60"),
   });
 
   const stations = stationData?.items || [];

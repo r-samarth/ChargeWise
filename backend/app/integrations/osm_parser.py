@@ -4,28 +4,57 @@ from pathlib import Path
 from typing import Any
 
 from app.services.deduplication import normalize_operator_name
+from app.utils.geo import haversine_km
+
+_KA_DISTRICT_CENTERS: list[tuple[str, str, float, float]] = [
+    ("Bengaluru", "Bengaluru Urban", 12.9768, 77.5901),
+    ("Devanahalli", "Bengaluru Rural", 13.2484, 77.7134),
+    ("Ramanagara", "Ramanagara", 12.7253, 77.2805),
+    ("Mandya", "Mandya", 12.6369, 76.7276),
+    ("Mysuru", "Mysuru", 12.3041, 76.6530),
+    ("Chamarajanagar", "Chamarajanagar", 11.9544, 77.1069),
+    ("Madikeri", "Kodagu", 12.4215, 75.7388),
+    ("Mangaluru", "Dakshina Kannada", 12.8698, 74.8430),
+    ("Udupi", "Udupi", 13.3520, 74.7870),
+    ("Hassan", "Hassan", 13.0302, 76.1745),
+    ("Chikkamagaluru", "Chikkamagaluru", 13.4059, 75.6388),
+    ("Shivamogga", "Shivamogga", 13.9326, 75.5750),
+    ("Tumakuru", "Tumakuru", 13.4193, 76.8810),
+    ("Kolar", "Kolar", 13.1217, 78.1255),
+    ("Chikkaballapur", "Chikkaballapur", 13.0994, 77.3887),
+    ("Chitradurga", "Chitradurga", 14.3049, 76.5297),
+    ("Davanagere", "Davanagere", 14.4567, 75.9073),
+    ("Haveri", "Haveri", 14.7180, 75.3656),
+    ("Karwar", "Uttara Kannada", 14.8122, 74.1323),
+    ("Hubballi", "Dharwad", 15.3518, 75.1380),
+    ("Gadag", "Gadag", 15.4167, 75.6816),
+    ("Koppal", "Koppal", 15.5748, 76.3119),
+    ("Hosapete", "Vijayanagara", 15.2665, 76.3872),
+    ("Ballari", "Ballari", 15.3483, 76.8055),
+    ("Belagavi", "Belagavi", 15.8783, 74.5158),
+    ("Bagalkot", "Bagalkot", 16.2904, 75.5916),
+    ("Vijayapura", "Vijayapura", 16.8144, 75.8934),
+    ("Raichur", "Raichur", 16.0547, 76.9004),
+    ("Yadgir", "Yadgir", 16.5744, 76.9254),
+    ("Kalaburagi", "Kalaburagi", 17.2409, 76.7697),
+    ("Bidar", "Bidar", 18.0207, 77.2487),
+]
 
 
 def _is_inside_karnataka(lat: float, lon: float) -> bool:
     in_blr = 12.75 <= lat <= 13.20 and 77.35 <= lon <= 77.85
-    in_south = 12.10 <= lat <= 13.80 and 74.65 <= lon <= 77.35
-    in_central = 13.20 <= lat <= 15.80 and 74.30 <= lon <= 77.20
-    in_north = 15.50 <= lat <= 17.60 and 74.30 <= lon <= 77.20
+    in_south = 11.75 <= lat <= 13.80 and 74.65 <= lon <= 77.35
+    in_central = 13.20 <= lat <= 15.80 and 74.10 <= lon <= 77.20
+    in_north = 15.50 <= lat <= 18.30 and 74.10 <= lon <= 77.50
     return in_blr or in_south or in_central or in_north
 
 
 def _infer_ka_city_district(lat: float, lon: float) -> tuple[str, str]:
-    if 12.75 <= lat <= 13.25 and 77.35 <= lon <= 77.85:
-        return "Bengaluru", "Bengaluru Urban"
-    if 12.80 <= lat <= 13.06 and 74.75 <= lon <= 75.05:
-        return "Mangaluru", "Dakshina Kannada"
-    if 12.90 <= lat <= 13.10 and 76.00 <= lon <= 76.85:
-        return "Channarayapatna / Hassan Corridor", "Hassan"
-    if 15.75 <= lat <= 16.05 and 74.40 <= lon <= 74.65:
-        return "Belagavi", "Belagavi"
-    if 16.70 <= lat <= 17.00 and 75.50 <= lon <= 77.30:
-        return "Vijayapura / Kalaburagi Region", "North Karnataka"
-    return "Karnataka", "Karnataka"
+    best = min(
+        _KA_DISTRICT_CENTERS,
+        key=lambda entry: haversine_km(lat, lon, entry[2], entry[3]),
+    )
+    return best[0], best[1]
 
 
 def _parse_kw(raw: str | None) -> float | None:

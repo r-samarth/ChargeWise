@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Bell, Building2, Car, Compass, Map as MapIcon, Plus, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { StatusAlert } from "../components/StatusAlert";
+import { Vehicle3DThumbnail } from "../components/Vehicle3DModel";
 import { useAuth } from "../context/AuthContext";
 import { apiRequest } from "../lib/api";
 import type {
@@ -153,20 +154,27 @@ export function DashboardPage() {
               {vehicles.slice(0, 3).map((v) => (
                 <li
                   key={v.id}
-                  className="cw-card-muted p-3.5 flex items-center justify-between gap-3"
+                  className="group cw-card-muted p-3 flex items-center justify-between gap-3"
                 >
-                  <div className="space-y-0.5">
-                    <p className="text-[15px] font-semibold text-[#0F172A]">
-                      {v.nickname}
-                      {v.is_default ? (
-                        <span className="ml-2 cw-pill cw-pill-verified">Default</span>
-                      ) : null}
-                    </p>
-                    <p className="text-[13px] text-[#475569] cw-num">
-                      {v.manufacturer} {v.model} ({v.usable_battery_kwh} kWh usable · {v.connector_types.join(", ")})
-                    </p>
+                  <div className="flex items-center gap-3 min-w-0">
+                    <Vehicle3DThumbnail
+                      manufacturer={v.manufacturer}
+                      model={v.model}
+                      className="w-20 h-14 shrink-0"
+                    />
+                    <div className="space-y-0.5 min-w-0">
+                      <p className="text-[15px] font-semibold text-[#0F172A] truncate">
+                        {v.nickname}
+                        {v.is_default ? (
+                          <span className="ml-2 cw-pill cw-pill-verified">Default</span>
+                        ) : null}
+                      </p>
+                      <p className="text-[13px] text-[#475569] cw-num truncate">
+                        {v.manufacturer} {v.model} ({v.usable_battery_kwh} kWh usable · {v.connector_types.join(", ")})
+                      </p>
+                    </div>
                   </div>
-                  <Link to={`/plan?vehicle=${v.id}`} className="cw-btn-secondary !py-1.5 !px-3.5">
+                  <Link to={`/plan?vehicle=${v.id}`} className="cw-btn-secondary !py-1.5 !px-3.5 shrink-0">
                     Plan
                   </Link>
                 </li>

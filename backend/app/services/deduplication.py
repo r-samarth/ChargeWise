@@ -43,6 +43,14 @@ def normalize_operator_name(value: str | None) -> str:
         return "relux"
     if "eesl" in txt:
         return "eesl"
+    if "shell" in txt:
+        return "shell"
+    if "ola" in txt:
+        return "ola"
+    if "iocl" in txt or "indian oil" in txt or "indianoil" in txt:
+        return "iocl"
+    if "sunfuel" in txt or "sun fuel" in txt:
+        return "sunfuel"
     return _normalize_text(value)
 
 

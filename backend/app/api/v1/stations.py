@@ -20,7 +20,7 @@ def list_stations(
     min_power_kw: float | None = Query(default=None, ge=0),
     verification_status: str | None = Query(default=None),
     page: int = Query(default=1, ge=1),
-    page_size: int = Query(default=25, ge=1, le=100),
+    page_size: int = Query(default=25, ge=1, le=250),
     db: Session = Depends(get_db),
 ) -> StationListOut:
     return StationService(db).list_stations(

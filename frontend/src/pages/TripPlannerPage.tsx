@@ -3,6 +3,7 @@ import { ArrowRight, Sliders } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { StatusAlert } from "../components/StatusAlert";
+import { Vehicle3DThumbnail } from "../components/Vehicle3DModel";
 import { KARNATAKA_PLACES } from "../constants/karnatakaPlaces";
 import { apiRequest } from "../lib/api";
 import { useTripStore } from "../store/tripStore";
@@ -128,6 +129,8 @@ export function TripPlannerPage() {
     planMut.mutate();
   };
 
+  const selectedVehicle = vehicles.find((v) => v.id === vehicleId) || vehicles[0];
+
   return (
     <div className="max-w-[980px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
       <div className="space-y-1.5">
@@ -156,24 +159,43 @@ export function TripPlannerPage() {
 
       <form onSubmit={handleSubmit} className="cw-card p-6 sm:p-8 space-y-6">
         {/* Vehicle */}
-        <div>
-          <label htmlFor="vehicleId" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
-            Select vehicle
-          </label>
-          <select
-            id="vehicleId"
-            className="cw-input"
-            value={vehicleId}
-            onChange={(e) => setVehicleId(e.target.value)}
-            disabled={vehicles.length === 0}
-          >
-            {vehicles.map((v) => (
-              <option key={v.id} value={v.id}>
-                {v.nickname} — {v.manufacturer} {v.model} ({v.usable_battery_kwh} kWh ·{" "}
-                {v.connector_types.join(", ")})
-              </option>
-            ))}
-          </select>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+          <div className={selectedVehicle ? "md:col-span-8" : "md:col-span-12"}>
+            <label htmlFor="vehicleId" className="block text-[13px] font-semibold text-[#1E293B] mb-1.5">
+              Select vehicle
+            </label>
+            <select
+              id="vehicleId"
+              className="cw-input"
+              value={vehicleId}
+              onChange={(e) => setVehicleId(e.target.value)}
+              disabled={vehicles.length === 0}
+            >
+              {vehicles.map((v) => (
+                <option key={v.id} value={v.id}>
+                  {v.nickname} — {v.manufacturer} {v.model} ({v.usable_battery_kwh} kWh ·{" "}
+                  {v.connector_types.join(", ")})
+                </option>
+              ))}
+            </select>
+          </div>
+          {selectedVehicle && (
+            <div className="md:col-span-4 flex items-center gap-3 cw-card-muted p-2.5">
+              <Vehicle3DThumbnail
+                manufacturer={selectedVehicle.manufacturer}
+                model={selectedVehicle.model}
+                className="w-24 h-16 shrink-0"
+              />
+              <div className="text-[12px] min-w-0">
+                <p className="font-semibold text-[#0F172A] truncate">{selectedVehicle.model}</p>
+                <p className="text-[#475569] cw-num">
+                  {selectedVehicle.max_dc_power_kw > 0
+                    ? `${selectedVehicle.max_dc_power_kw} kW DC`
+                    : `${selectedVehicle.max_ac_power_kw} kW AC`}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Route Endpoints */}

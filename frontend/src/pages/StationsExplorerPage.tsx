@@ -30,7 +30,7 @@ export function StationsExplorerPage() {
   if (minPower) queryParams.set("min_power_kw", minPower);
   if (verification) queryParams.set("verification_status", verification);
   queryParams.set("page", String(page));
-  queryParams.set("page_size", "24");
+  queryParams.set("page_size", "60");
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["stations", queryParams.toString()],
@@ -84,12 +84,37 @@ export function StationsExplorerPage() {
           }}
         >
           <option value="">All Districts</option>
-          <option value="Mysuru">Mysuru</option>
-          <option value="Kodagu">Kodagu</option>
-          <option value="Dakshina Kannada">Dakshina Kannada</option>
-          <option value="Hassan">Hassan</option>
-          <option value="Bengaluru Urban">Bengaluru Urban</option>
+          <option value="Bagalkot">Bagalkot</option>
+          <option value="Ballari">Ballari</option>
           <option value="Belagavi">Belagavi</option>
+          <option value="Bengaluru Rural">Bengaluru Rural</option>
+          <option value="Bengaluru Urban">Bengaluru Urban</option>
+          <option value="Bidar">Bidar</option>
+          <option value="Chamarajanagar">Chamarajanagar</option>
+          <option value="Chikkaballapur">Chikkaballapur</option>
+          <option value="Chikkamagaluru">Chikkamagaluru</option>
+          <option value="Chitradurga">Chitradurga</option>
+          <option value="Dakshina Kannada">Dakshina Kannada</option>
+          <option value="Davanagere">Davanagere</option>
+          <option value="Dharwad">Dharwad</option>
+          <option value="Gadag">Gadag</option>
+          <option value="Hassan">Hassan</option>
+          <option value="Haveri">Haveri</option>
+          <option value="Kalaburagi">Kalaburagi</option>
+          <option value="Kodagu">Kodagu</option>
+          <option value="Kolar">Kolar</option>
+          <option value="Koppal">Koppal</option>
+          <option value="Mandya">Mandya</option>
+          <option value="Mysuru">Mysuru</option>
+          <option value="Raichur">Raichur</option>
+          <option value="Ramanagara">Ramanagara</option>
+          <option value="Shivamogga">Shivamogga</option>
+          <option value="Tumakuru">Tumakuru</option>
+          <option value="Udupi">Udupi</option>
+          <option value="Uttara Kannada">Uttara Kannada</option>
+          <option value="Vijayanagara">Vijayanagara</option>
+          <option value="Vijayapura">Vijayapura</option>
+          <option value="Yadgir">Yadgir</option>
         </select>
 
         <select
@@ -122,6 +147,9 @@ export function StationsExplorerPage() {
           <option value="CCS2">CCS2 (DC Fast)</option>
           <option value="TYPE_2">Type 2 (AC)</option>
           <option value="ATHER_PROPRIETARY">Ather 2W</option>
+          <option value="TYPE_6">Type 6 (Ola 2W)</option>
+          <option value="BHARAT_AC_001">Bharat AC-001</option>
+          <option value="BHARAT_DC_001">Bharat DC-001</option>
           <option value="CHADEMO">CHAdeMO</option>
         </select>
 

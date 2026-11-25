@@ -11,7 +11,7 @@ sys.path.insert(0, str(BACKEND_DIR))
 
 from app.database.base import utc_now  # noqa: E402
 from app.database.session import SessionLocal  # noqa: E402
-from app.integrations.osm_parser import load_karnataka_osm_stations  # noqa: E402
+from app.integrations.osm_parser import _infer_ka_city_district, load_karnataka_osm_stations  # noqa: E402
 from app.integrations.seed_data import (  # noqa: E402
     CORRIDOR_AMENITIES_SEED,
     CURATED_STATIONS_SEED,
@@ -220,6 +220,18 @@ def seed_all() -> dict[str, int]:
                 stats["amenities"] += 1
 
         db.commit()
+
+        # 6. Backfill accurate Karnataka city/district for older generic OSM rows
+        generic_rows = list(
+            db.scalars(
+                select(ChargingStation).where(ChargingStation.district == "Karnataka")
+            )
+        )
+        for st in generic_rows:
+            st.city, st.district = _infer_ka_city_district(st.latitude, st.longitude)
+        if generic_rows:
+            db.commit()
+
         return stats
     finally:
         db.close()
