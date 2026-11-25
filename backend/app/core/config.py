@@ -1,4 +1,5 @@
 from functools import lru_cache
+import re
 from typing import List
 
 from pydantic import field_validator
@@ -39,10 +40,18 @@ class Settings(BaseSettings):
     @classmethod
     def normalize_database_url(cls, v: str) -> str:
         if isinstance(v, str):
-            if v.startswith("postgres://"):
-                return "postgresql+psycopg://" + v[len("postgres://"):]
-            if v.startswith("postgresql://"):
-                return "postgresql+psycopg://" + v[len("postgresql://"):]
+            s = v.strip().strip('"').strip("'").strip()
+            if s.startswith("DATABASE_URL="):
+                s = s[len("DATABASE_URL="):].strip().strip('"').strip("'")
+            # Handle Neon/Render CLI snippets like: psql 'postgresql://...'
+            m = re.search(r"(postgres(?:ql)?(?:\+psycopg)?://[^\s'\"]+)", s)
+            if m:
+                s = m.group(1)
+            if s.startswith("postgres://"):
+                return "postgresql+psycopg://" + s[len("postgres://"):]
+            if s.startswith("postgresql://"):
+                return "postgresql+psycopg://" + s[len("postgresql://"):]
+            return s
         return v
 
     @property
