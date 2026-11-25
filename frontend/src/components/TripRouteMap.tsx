@@ -51,8 +51,11 @@ export function TripRouteMap({
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; CARTO'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url={
+            import.meta.env.VITE_MAP_TILE_URL ||
+            "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          }
         />
         <Polyline
           positions={polylineCoords}
