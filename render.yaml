@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: ChargeWise
+    runtime: docker
+    plan: free
+    region: oregon
+    repo: https://github.com/r-samarth/ChargeWise
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: CORS_ORIGINS
+        value: https://frontend-691q.vercel.app,https://frontend-691q-samarth-r18s-projects.vercel.app,https://frontend-691q-git-main-samarth-r18s-projects.vercel.app
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ChargeWise
+          property: connectionString
+
+databases:
+  - name: ChargeWise
+    databaseName: chargewise
+    user: chargewise_user
+    plan: free
+    region: oregon
+    postgresMajorVersion: "16"
